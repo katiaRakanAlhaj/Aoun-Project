@@ -1,8 +1,21 @@
 {
-    "home": "home",
-    "about_the_platform": "About the Platform",
-    "services": "Services",
-    "blog": "Blog",
-    "products": "Products",
-    "contact_us": "Contact Us"
+    "menu": {
+        "home": "home",
+        "about_the_platform": "About the Platform",
+        "services": "Services",
+        "blog": "Blog",
+        "products": "Products",
+        "contact_us": "Contact Us"
+    },
+    "achievements": "Achievements",
+    "available_on": "Available on",
+    "404": {
+        "title": "Sorry! Page Not Found",
+        "message": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+        "goBack": "Go Back",
+        "goHome": "Home",
+        "help": "Need help?",
+        "contact": "Contact Support"
+    }
+
 }

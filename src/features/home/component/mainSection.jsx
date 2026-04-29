@@ -26,7 +26,6 @@ const MainSection = () => {
               اكتشف الشركات
             </button>
             <button className="w-[14rem] h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1.2rem] font-bold rounded-md text-dark">
-              {" "}
               تصفح المنتجات
             </button>
           </div>

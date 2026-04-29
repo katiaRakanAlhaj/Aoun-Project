@@ -3,27 +3,72 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
+  useParams,
+  useNavigate,
+  Outlet,
+  useLocation,
 } from "react-router-dom";
 import Wrapper from "./component/wrapper";
 import Home from "./pages/home";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";
-function App() {
+import NotFound from "./component/page_not_found";
+import Platform from "./pages/platform";
+
+// Component to handle language sync with URL
+function LanguageHandler() {
+  const { lang } = useParams();
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const isArabic = i18n.language === 'ar';
+    // Get language from URL param
+    const urlLang = lang;
+    
+    // Get from localStorage or default to 'ar'
+    const storedLang = localStorage.getItem("language");
+    
+    // Determine which language to use
+    let languageToUse = urlLang || storedLang || "ar";
+    
+    // Change i18n language if needed
+    if (i18n.language !== languageToUse) {
+      i18n.changeLanguage(languageToUse);
+    }
+    
+    // Set RTL/LTR direction
+    const isArabic = languageToUse === 'ar';
     document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-  }, [i18n.language]);
+    
+    // Only add language to URL if it's completely missing (not even 'en' or 'ar')
+    const hasLangParam = lang === 'en' || lang === 'ar';
+    const isRootPath = location.pathname === '/' || location.pathname === '';
+    
+    if (!hasLangParam && isRootPath) {
+      // Only redirect when on root path without language
+      navigate(`/${languageToUse}`, { replace: true });
+    }
+  }, [lang, i18n, navigate, location.pathname]);
 
+  return <Outlet />;
+}
+
+function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Wrapper />}>
-        <Route index element={<Home />} />
-      </Route>,
-    ),
+      <Route element={<LanguageHandler />}>
+        <Route path="/:lang?" element={<Wrapper />}>
+          <Route index element={<Home />} />
+            <Route path = "about_the_platform" element={<Platform />} />
+          {/* Add 404 route - this will catch all unmatched routes */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Route>
+    )
   );
+  
   return <RouterProvider router={router} />;
 }
 
