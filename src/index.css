@@ -9,11 +9,16 @@ body {
     --bg-primary: #009444;
     --text-secondary: #0066B3;
     --text-dark: #1B1C19;
-    --text-grey-light: #0B6C4B1A
+    --text-grey-light: #0B6C4B1A;
+    --bg-secondary: #0066B3;
 }
 
 .text-primary {
     color: var(--text-primary);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
 }
 
 .text-grey-light {
@@ -46,6 +51,10 @@ html::-webkit-scrollbar {
 
 .container2 {
     max-width: 95%
+}
+
+.container3 {
+    max-width: 92%
 }
 
 @media only screen and (max-width: 400px) {

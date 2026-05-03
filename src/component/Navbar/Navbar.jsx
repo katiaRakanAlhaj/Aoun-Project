@@ -33,6 +33,17 @@ const Navbar = () => {
     return `/${currentLang}/${path}`;
   };
 
+  // Function to check if the current path matches the item
+  const isActive = (itemPath) => {
+    const pathWithoutLang = location.pathname.replace(/^\/(en|ar)/, "");
+    
+    if (itemPath === "") {
+      return pathWithoutLang === "" || pathWithoutLang === "/";
+    }
+    
+    return pathWithoutLang === `/${itemPath}` || pathWithoutLang === itemPath;
+  };
+
   const changeLanguage = () => {
     const newLanguage = currentLang === "ar" ? "en" : "ar";
 
@@ -67,7 +78,15 @@ const Navbar = () => {
       <div className="flex gap-x-[2.5rem]">
         {items.map((item, index) => (
           <Link key={index} to={getLocalizedPath(item.path)}>
-            <p className="text-[1rem] text-[#525252]">{item.desc}</p>
+            <p 
+              className={`text-[1rem] ${
+                isActive(item.path) 
+                  ? "text-primary font-bold" 
+                  : "text-[#525252]"
+              }`}
+            >
+              {item.desc}
+            </p>
           </Link>
         ))}
       </div>
