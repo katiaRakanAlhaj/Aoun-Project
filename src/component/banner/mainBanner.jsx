@@ -13,14 +13,16 @@ const MainBanner = ({ image, title }) => {
             backgroundRepeat: "no-repeat",
           }}
         />
-        {/* Gradient Overlay - White in center, transparent on edges */}
+        
+        {/* White Overlay - Full white over entire image */}
         <div
-          className="absolute inset-0"
+          className="absolute w-full h-full top-0 left-0"
           style={{
-            background:
-              "linear-gradient(270deg, rgba(251, 249, 244, 0.8) 0%, rgba(251, 249, 244, 0.6) 20%, #FBF9F4 50%, rgba(251, 249, 244, 0.8) 100%, rgba(251, 249, 244, 0) 100%)",
+            backgroundColor: "white",
+            opacity: 0.8, // Adjust this value to control white intensity (0 = transparent, 1 = solid white)
           }}
         />
+        
         {/* Title */}
       </div>
       <div

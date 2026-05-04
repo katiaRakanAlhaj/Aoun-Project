@@ -1,4 +1,5 @@
 import AppDownloadFooter from "../features/services/component/App_Download_Footer";
+import ForIndustrialCompanies from "../features/services/component/for_industrial_companies";
 import JourneyOfSuccess from "../features/services/component/journey_of_success";
 import OurStoryService from "../features/services/component/our_story_service";
 import PartnerInConstruction from "../features/services/component/partner_in_construction";
@@ -13,6 +14,7 @@ const Services = ()=> {
             <OurStoryService/>
             <JourneyOfSuccess/>
             <TechnologySolutions/>
+            <ForIndustrialCompanies/>
             <PartnerInConstruction/>
             <Statistics/>
             <AppDownloadFooter/>

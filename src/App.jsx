@@ -16,6 +16,7 @@ import i18n from "./i18n";
 import NotFound from "./component/page_not_found";
 import Platform from "./pages/platform";
 import Services from "./pages/services";
+import Products from "./pages/products";
 
 // Component to handle language sync with URL
 function LanguageHandler() {
@@ -64,7 +65,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about_the_platform" element={<Platform />} />
           <Route path="services" element={<Services />} />
-
+          <Route path="products" element={<Products />} />
           {/* Add 404 route - this will catch all unmatched routes */}
           <Route path="*" element={<NotFound />} />
         </Route>
