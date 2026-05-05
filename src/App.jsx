@@ -17,6 +17,8 @@ import NotFound from "./component/page_not_found";
 import Platform from "./pages/platform";
 import Services from "./pages/services";
 import Products from "./pages/products";
+import Blog from "./pages/blog";
+import SingleBlog from "./pages/singleBlog";
 
 // Component to handle language sync with URL
 function LanguageHandler() {
@@ -66,6 +68,9 @@ function App() {
           <Route path="about_the_platform" element={<Platform />} />
           <Route path="services" element={<Services />} />
           <Route path="products" element={<Products />} />
+          <Route path="Blog" element={<Blog />} />
+          <Route path="blog/:id" element={<SingleBlog />} />
+
           {/* Add 404 route - this will catch all unmatched routes */}
           <Route path="*" element={<NotFound />} />
         </Route>

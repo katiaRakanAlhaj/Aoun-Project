@@ -70,7 +70,7 @@ const ProductsGrid = () => {
     },
   ];
   return (
-    <div className="h-auto bg-white py-[5rem] w-full">
+    <div className="h-auto  py-[5rem] w-full">
       <div className="container2 mx-auto px-[2rem]">
         <SecondTitleStyle title={"تصفح المنتجات الصناعية"} />
         <p className="text-[#525252] text-lg mt-[1rem]">
@@ -83,7 +83,7 @@ const ProductsGrid = () => {
                 className="w-full rounded-t-2xl h-[15rem] object-cover"
                 src={product?.image}
               />
-              <h1 className="text-dark font-bold text-lg leading-8 mt-[1.5rem]">
+              <h1 className="text-dark font-bold text-xl leading-8 mt-[1.5rem]">
                 {product?.title}
               </h1>
               <div className="mt-[1.3rem] items-center flex gap-x-2">
