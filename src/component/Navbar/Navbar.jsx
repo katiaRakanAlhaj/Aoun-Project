@@ -37,10 +37,20 @@ const Navbar = () => {
   const isActive = (itemPath) => {
     const pathWithoutLang = location.pathname.replace(/^\/(en|ar)/, "");
     
+    // Handle home page
     if (itemPath === "") {
       return pathWithoutLang === "" || pathWithoutLang === "/";
     }
     
+    // Handle blog section - matches /blog, /blog/, and /blog/2, /blog/1, etc.
+    if (itemPath === "blog") {
+      return pathWithoutLang === "/blog" || 
+             pathWithoutLang === "blog" ||
+             pathWithoutLang.startsWith("/blog/") ||
+             pathWithoutLang.startsWith("blog/");
+    }
+    
+    // Handle exact matches for other paths
     return pathWithoutLang === `/${itemPath}` || pathWithoutLang === itemPath;
   };
 

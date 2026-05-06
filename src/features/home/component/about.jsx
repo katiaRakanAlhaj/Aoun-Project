@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import aboutImage from "../../../assets/images/aboutImage.png";
 import SubTitle from "../../../ui/subTitleStyle";
 const About = () => {
@@ -19,7 +20,7 @@ const About = () => {
               يسكينج أليايت,سيتلوريم ايبسوم دولار سيت أميت ,كونسيكتيتور{" "}
             </p>
           </div>
-          <div className="col-span-4  ml-[-15rem] mt-[-2rem]">
+          <div className={`col-span-4 ${i18next.language == "ar"?' ml-[-15rem]':' mr-[-15rem]'} mt-[-2rem]`}>
             <img
               className="w-full h-[44rem] overflow-hidden object-contain mt-[-5rem]"
               src={aboutImage}

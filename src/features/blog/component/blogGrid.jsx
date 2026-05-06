@@ -5,7 +5,7 @@ import blog1 from "../../../assets/images/blog1.png";
 import blog2 from "../../../assets/images/blog2.png";
 import blog3 from "../../../assets/images/blog3.png";
 import download from "../../../assets/images/download.svg";
-
+import i18next from "i18next";
 const BlogGrid = () => {
   const [visibleCount, setVisibleCount] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
@@ -209,7 +209,7 @@ const BlogGrid = () => {
   };
 
   return (
-    <div className="container3 mx-auto mb-[4rem]" dir="rtl">
+    <div className="container3 mx-auto mb-[4rem]">
       <div className="grid grid-cols-12 gap-x-[4rem] mt-[3rem]">
         {/* first column */}
         <div className="col-span-4">
@@ -217,9 +217,11 @@ const BlogGrid = () => {
             <input
               type="text"
               placeholder="ابحث عن خبر"
-              className="w-full px-4 h-[3rem] text-sm pr-10 rounded-t-lg bg-white border border-[#E7E8E9] focus:outline-none text-[#697077]"
+              className={`w-full px-4 h-[3rem] text-sm ${i18next.language == "ar" ? "pr-10" : "pl-10"} rounded-t-lg bg-white border border-[#E7E8E9] focus:outline-none text-[#697077]`}
             />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <div
+              className={`absolute inset-y-0 ${i18next.language == "ar" ? "right-0 pr-3 " : "left-0 pl-3 "} flex items-center pointer-events-none`}
+            >
               <svg
                 className="w-5 h-5 text-dark"
                 fill="none"
@@ -234,7 +236,9 @@ const BlogGrid = () => {
                 />
               </svg>
             </div>
-            <button className="absolute bottom-0 rounded-tl-lg left-0 top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer">
+            <button
+              className={`absolute bottom-0  ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer`}
+            >
               بحث
             </button>
           </div>
@@ -274,7 +278,9 @@ const BlogGrid = () => {
                 <option>الاحدث اولا</option>
                 <option>الاقدم اولا</option>
               </select>
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div
+                className={`absolute inset-y-0 flex items-center ${i18next.language == "ar" ? "pl-3 left-0 " : "pr-3 right-0 "} pointer-events-none`}
+              >
                 <svg
                   className="w-5 h-5 text-primary"
                   fill="none"

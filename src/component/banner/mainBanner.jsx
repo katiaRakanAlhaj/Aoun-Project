@@ -1,10 +1,10 @@
 import i18n from "../../i18n";
 import bannerPlatform from "../../assets/images/bannerPlatform.png";
 
-const MainBanner = ({ image, title }) => {
+const MainBanner = ({ image, title, height }) => {
   return (
     <div className="relative">
-      <div className="w-full h-[24rem]">
+      <div className={`w-full ${height ? height : "h-[24rem]"}`}>
         {/* Background Image */}
         <div
           className="absolute w-full h-full bg-cover bg-center -z-10 transition-all duration-700"
@@ -19,7 +19,7 @@ const MainBanner = ({ image, title }) => {
           className="absolute w-full h-full top-0 left-0"
           style={{
             backgroundColor: "white",
-            opacity: 0.8, // Adjust this value to control white intensity (0 = transparent, 1 = solid white)
+            opacity: 0.9,
           }}
         />
         
