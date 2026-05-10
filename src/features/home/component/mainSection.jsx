@@ -1,55 +1,82 @@
+import i18next from "i18next";
 import mainImage from "../../../assets/images/mainImage.png";
 import settings from "../../../assets/images/settings.svg";
+
 const MainSection = () => {
   return (
-    <div className="mt-[8rem] container mx-auto pb-[7rem]">
-      <div className="grid grid-cols-2 gap-x-[2rem]">
+    <div className="mt-[4rem] lg:mt-[8rem] container mx-auto pb-[3rem] md:pb-[7rem] px-4 md:px-0">
+      <div className="grid lg:grid-cols-2 gap-[2rem]">
         {/* first section */}
         <div>
-          <div className="w-[9rem] bg-[#06641A1A] gap-x-2 rounded-4xl h-[2rem] flex justify-center items-center">
+          <div className="w-[9rem] bg-[#06641A1A] gap-x-2 rounded-4xl h-[2rem] flex justify-center items-center mx-auto lg:mx-0">
             <div className="w-[0.5rem] h-[0.5rem] rounded-full bg-primary"></div>
             <p className="text-[0.9rem] text-primary font-bold">
               رؤية عمان 2040
             </p>
           </div>
-          <h1 className="text-secondary text-[7rem] font-bold">
-            ندعم المنتج
-            <br />
-            <span className="text-dark">العماني..</span>
-          </h1>
-          <p className="text-[1.5rem] mt-[1rem] w-[80%] text-[#525252] leading-relaxed">
+
+          {/* Desktop heading */}
+          <div className="lg:block hidden">
+            <h1 className={`text-secondary lg:text-[7rem] text-[3rem] font-bold text-center ${i18next.language == "ar"?'lg:text-right':'lg:text-left'}`}>
+              ندعم المنتج
+              <br />
+              <span className="text-dark">العماني..</span>
+            </h1>
+          </div>
+
+          {/* Mobile heading */}
+          <div className="lg:hidden block">
+            <h1 className="text-secondary text-[2.5rem] md:text-[3rem] font-bold text-center">
+              ندعم المنتج <span className="text-dark">العماني..</span>
+            </h1>
+          </div>
+
+          <p className={`text-[1.125rem] md:text-[1.5rem] mt-[1rem] w-full lg:w-[80%] text-[#525252] leading-relaxed text-center ${i18next.language == "ar"?'lg:text-right':'lg:text-left'}`}>
             نربط الشركات بالمستهلك مباشرة. نسعى لتمكين الابتكار الصناعي المحلي
             وبناء جسور الثقة بين المنتج الوطني والمستهلك العالمي.
           </p>
-          <div className="mt-[3rem] flex gap-x-[1rem]">
-            <button className="w-[14rem] h-[4rem] bg-primary cursor-pointer shadow-lg text-[1.2rem] font-bold rounded-md text-white">
-              اكتشف الشركات
+
+          <div className="mt-[2rem] md:mt-[3rem] flex flex-col sm:flex-row gap-y-3 sm:gap-y-0 gap-x-[1rem] justify-center lg:justify-start">
+            <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] bg-primary cursor-pointer shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-white hover:bg-primary/90 transition-colors">
+              {i18next.t("home.discover_companies")}
             </button>
-            <button className="w-[14rem] h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1.2rem] font-bold rounded-md text-dark">
-              تصفح المنتجات
+            <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-dark hover:bg-[#ccd0d4] transition-colors">
+              {i18next.t("home.browse_products")}
             </button>
           </div>
         </div>
+
         {/* second section */}
-        <div className="relative">
+        <div className="relative mt-[2rem] lg:mt-0">
           <img
-            style={{ boxShadow: "0px 25px 50px -12px #00000040;" }}
-            className="w-full h-[40rem] rounded-[3rem]  object-cover rotate-[3deg] shadow-2xl"
+            style={{ boxShadow: "0px 25px 50px -12px #00000040" }}
+            className="w-full lg:h-[40rem] h-[18rem] md:h-[25rem] rounded-[1.5rem] md:rounded-[3rem] object-cover lg:rotate-[3deg] shadow-2xl"
             src={mainImage}
+            alt="Main section"
           />
-          <div className="absolute -bottom-[3rem] -right-[3rem]">
+
+          {/* Floating card - responsive position */}
+          <div className="absolute lg:block hidden -bottom-[2rem] -right-[1rem] md:-bottom-[3rem] md:-right-[3rem] left-1/2 transform -translate-x-1/2 lg:left-auto lg:translate-x-0 ">
             <div
               style={{ boxShadow: "0px 20px 25px -5px #0000001A" }}
-              className="w-[17rem] h-[11rem]  flex flex-col justify-center items-center px-[2rem] shadow-2xl rounded-3xl bg-white"
+              className="w-[calc(100vw-2rem)] max-w-[17rem] h-auto md:w-[17rem] md:h-[11rem] flex flex-col justify-center items-center px-[1.5rem] md:px-[2rem] py-[1rem] shadow-2xl rounded-2xl md:rounded-3xl bg-white"
             >
-              <div className="flex gap-x-4  items-center">
-                <div className="w-[3rem] h-[3rem] flex justify-center items-center rounded-md bg-[#0B6C4B1A]">
-                  <img src={settings} />
+              <div className="flex gap-x-4 items-center">
+                <div className="w-[2.5rem] md:w-[3rem] h-[2.5rem] md:h-[3rem] flex justify-center items-center rounded-md bg-[#0B6C4B1A]">
+                  <img
+                    src={settings}
+                    alt="Settings"
+                    className="w-5 md:w-auto"
+                  />
                 </div>
-                <p className="font-bold text-md text-dark">جودة معتمدة</p>
+                <p className="font-bold text-sm md:text-md text-dark">
+                  جودة معتمدة
+                </p>
               </div>
               <div>
-                <p className = "px-4 mt-2 text-[#5C403F]">منتجاتنا تخضع لأعلى معايير الجودة العمانية المعتمدة.</p>
+                <p className="px-0 md:px-4 mt-2 text-[#5C403F] text-xs md:text-base text-center">
+                  منتجاتنا تخضع لأعلى معايير الجودة العمانية المعتمدة.
+                </p>
               </div>
             </div>
           </div>
@@ -58,4 +85,5 @@ const MainSection = () => {
     </div>
   );
 };
+
 export default MainSection;

@@ -14,15 +14,15 @@ const Navbar = () => {
   };
 
   const currentLang = getCurrentLang();
-  const isAboutPlatform = location.pathname.includes("about_the_platform");
+  const isAboutPlatform = location.pathname.includes("Platform");
 
   const items = [
     { desc: t("menu.home"), path: "" },
-    { desc: t("menu.about_the_platform"), path: "about_the_platform" },
-    { desc: t("menu.services"), path: "services" },
-    { desc: t("menu.products"), path: "products" },
-    { desc: t("menu.blog"), path: "blog" },
-    { desc: t("menu.contact_us"), path: "contact" },
+    { desc: t("menu.about_the_platform"), path: "Platform" },
+    { desc: t("menu.services"), path: "Services" },
+    { desc: t("menu.products"), path: "Products" },
+    { desc: t("menu.blog"), path: "Blog" },
+    { desc: t("menu.contact_us"), path: "Contact" },
   ];
 
   // Function to generate path with language

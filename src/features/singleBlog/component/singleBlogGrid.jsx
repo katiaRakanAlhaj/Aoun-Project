@@ -27,11 +27,11 @@ const SingleBlogGrid = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-12 mt-[2rem] gap-x-[3rem]">
+    <div className="grid lg:grid-cols-12 gap-y-[2rem] grid-cols-1 mt-[2rem] gap-x-[3rem] lg:px-0 px-[1rem]">
       {/* first column */}
-      <div className="col-span-8">
-        <div className="flex justify-between">
-          <h1 className="font-bold text-[1.6rem] leading-relaxed w-[70%] text-[#333333]">
+      <div className="lg:col-span-8 cols-span-1">
+        <div className="lg:flex justify-between space-y-[1rem]">
+          <h1 className="font-bold md:text-[1.6rem] text-[1.4rem] leading-relaxed md:w-[70%] text-[#333333]">
             وضع حجر الأساس لأكبر مشروع متكامل الإنتاج مركزات النحاس في سلطنة
             عمان
           </h1>
@@ -48,10 +48,10 @@ const SingleBlogGrid = () => {
           أيا كوممودو كونسيكيوات
         </p>
         <img
-          className="w-full h-[27rem] rounded-3xl mt-[1rem] object-cover"
+          className="w-full md:h-[27rem] h-[20rem] rounded-3xl mt-[1rem] object-cover"
           src={singleBlogImage}
         />
-        <h1 className="font-bold text-[1.6rem] mt-[1rem] leading-relaxed w-[70%] text-[#333333]">
+        <h1 className="font-bold md:text-[1.6rem] text-[1.4rem] mt-[1rem] leading-relaxed md:w-[70%] text-[#333333]">
           لوريم ايبسوم دولار سيت
         </h1>
         <p className="text-[#666666] text-md leading-[2rem] mt-2">
@@ -66,7 +66,7 @@ const SingleBlogGrid = () => {
         </p>
       </div>
       {/* second column */}
-      <div className="col-span-4">
+      <div className="lg:col-span-4 col-span-1">
         <h1 className="text-[#333333] font-bold text-[1.2rem]">آخر المدونات</h1>
         <div className="w-full h-[0.3rem] mt-2 bg-primary rounded-full"></div>
         {lastBlog?.map((lastBlog) => (

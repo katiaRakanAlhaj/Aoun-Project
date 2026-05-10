@@ -8,8 +8,8 @@ const PlatformCompanies = () => {
     <div className="w-full h-auto bg-[#191C1A] py-[6rem]">
       <div className="container1 mx-auto">
         {/* first column */}
-        <div className="grid grid-cols-2 gap-x-[4.5rem]">
-          <div className="grid grid-cols-2 gap-[1.5rem]">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-y-[3rem] gap-x-[4.5rem]">
+          <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-[1.5rem]">
             {/* first column inside first main column */}
             <div className="flex flex-col space-y-[1.5rem]">
               <img

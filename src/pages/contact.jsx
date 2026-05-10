@@ -5,7 +5,7 @@ import Faq from "../features/contact/component/faq";
 const Contact = () => {
   return (
     <div>
-      <ContactBanner />
+      {/* <ContactBanner /> */}
       <Faq />
       <ContactGrid />
     </div>

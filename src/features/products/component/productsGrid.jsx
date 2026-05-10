@@ -70,13 +70,13 @@ const ProductsGrid = () => {
     },
   ];
   return (
-    <div className="h-auto  py-[5rem] w-full">
-      <div className="container2 mx-auto px-[2rem]">
+    <div className="h-auto  lg:py-[5rem] py-[3rem] w-full">
+      <div className="container2 mx-auto lg:px-[2rem] px-[1rem]">
         <SecondTitleStyle title={"تصفح المنتجات الصناعية"} />
         <p className="text-[#525252] text-lg mt-[1rem]">
           استكشف التميز الصناعي العماني عبر مختلف القطاعات
         </p>
-        <div className="grid grid-cols-5 gap-x-[2rem] gap-y-[3.5rem] mt-[3rem]">
+        <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-x-[2rem] gap-y-[3.5rem] mt-[3rem]">
           {productsGridItems?.map((product, index) => (
             <div key={index}>
               <img

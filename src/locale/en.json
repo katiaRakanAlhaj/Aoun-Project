@@ -16,6 +16,13 @@
         "goHome": "Home",
         "help": "Need help?",
         "contact": "Contact Support"
+    },
+    "home": {
+        "discover_companies": "Discover the companies",
+        "browse_products": "Browse products",
+        "about_us": "About Us",
+        "Awn_app": "The Awn application",
+        "number_speak": "Numbers speak",
+        "download_app": "Download the app now"
     }
-
 }

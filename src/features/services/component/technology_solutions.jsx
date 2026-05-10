@@ -20,7 +20,7 @@ const TechnologySolutions = () => {
     <div className="h-auto w-full py-[6rem] bg-[#EAE8E3]">
       <div className="container2 mx-auto">
         <SecondTitleStyle title={"الحلول التقنية"} />
-        <div className="grid grid-cols-2 gap-[1rem] mt-[2rem]">
+        <div className="grid md:grid-cols-2 gap-[1rem] mt-[2rem]">
           {solutionItems?.map((item, index) => (
             <div 
               key={index}

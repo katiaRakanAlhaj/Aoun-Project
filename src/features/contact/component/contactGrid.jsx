@@ -5,12 +5,12 @@ import location from "../../../assets/images/location.svg";
 
 const ContactGrid = () => {
   return (
-    <div className="bg-white w-full h-auto py-[4rem]">
+    <div className="bg-white w-full h-auto md:py-[4rem] py-[2rem]">
       <div className="container3 mx-auto">
-        <div className="grid grid-cols-2 gap-x-[4rem]">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-y-[2rem] gap-x-[4rem]">
           {/* first column */}
           <div className="flex flex-col mt-[3rem]">
-            <h1 className="font-bold text-[2.5rem] text-[#333333]">
+            <h1 className="font-bold md:text-[2.5rem] text-[2rem] text-[#333333]">
               تواصلوا معنا مباشرة
             </h1>
             <p className="text-[#525252] text-lg mt-2">
@@ -47,12 +47,12 @@ const ContactGrid = () => {
           
           {/* second column */}
           <div className="flex flex-col space-y-[2rem]">
-            <div className="grid grid-cols-2 gap-x-[2rem]">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-y-[2rem] gap-x-[2rem]">
               <div className="w-full h-[14rem] bg-[#E9EFF0] rounded-md p-[2rem] flex flex-col space-y-[1.5rem]">
                 <div className="w-[3.5rem] h-[3.5rem] flex justify-center items-center bg-primary rounded-md">
                   <img src={email} className="w-[1.5rem] h-[1.5rem]" alt="email" />
                 </div>
-                <h1 className="font-bold text-dark text-2xl">
+                <h1 className="font-bold text-dark md:text-2xl text-xl">
                   البريد الإلكتروني
                 </h1>
                 <p className="text-primary text-lg">support@al-majan.om</p>
@@ -61,7 +61,7 @@ const ContactGrid = () => {
                 <div className="w-[3.5rem] h-[3.5rem] flex justify-center items-center bg-primary rounded-md">
                   <img src={phone} className="w-[1.5rem] h-[1.5rem]" alt="phone" />
                 </div>
-                <h1 className="font-bold text-dark text-2xl">
+                <h1 className="font-bold text-dark md:text-2xl text-xl">
                   الهاتف
                 </h1>
                 <p className="text-primary text-lg">+968 2440 0000</p>
@@ -69,7 +69,7 @@ const ContactGrid = () => {
             </div>
             
             <div className="w-full h-auto py-[2.5rem] bg-secondary rounded-md flex justify-center items-center">
-              <div className="flex gap-x-[1rem]">
+              <div className="flex gap-x-[1rem] lg:px-0 px-[1rem]">
                 <img className="w-[2rem] h-[2rem] mt-4" src={location} alt="location" />
                 <div>
                   <h1 className="font-bold text-white text-xl">المقر الرئيسي</h1>

@@ -5,7 +5,7 @@ const BannerPlatform = ({ image, title }) => {
   return (
     <div className="relative">
       <div
-        className="w-full h-[24rem]"
+        className="w-full lg:h-[24rem] h-[18rem]"
       >
         {/* Background Image */}
         <div

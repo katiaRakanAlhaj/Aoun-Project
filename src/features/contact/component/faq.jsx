@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MainBanner from "../../../component/banner/mainBanner";
 import SecondTitleStyle from "../../../ui/secondTitleStyle";
-
+import i18next from "i18next";
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(0); // Changed from null to 0
 
@@ -33,13 +33,13 @@ const Faq = () => {
   };
 
   return (
-    <div className="w-full h-auto bg-white py-[6rem]">
+    <div className="w-full h-auto bg-white lg:py-[6rem] py-[3rem]">
       <div className="w-full container1 mx-auto">
         <h1 className="text-[#0B6C4B] font-bold text-[1.7rem]">
           الأسئلة المتكررة
         </h1>
         <div className="flex gap-x-[2rem] items-center">
-          <p className="text-[#333333] text-nowrap font-bold mt-3 text-[2.5rem]">
+          <p className="text-[#333333] text-nowrap font-bold mt-3 md:text-[2.5rem] text-[1.7rem]">
             حلول سريعة لاستفساراتكم
           </p>
           <div className="w-full h-[0.1rem] bg-[#BBE5C64D]"></div>
@@ -53,7 +53,7 @@ const Faq = () => {
                 onClick={() => toggleAccordion(index)}
                 className="w-full flex justify-between items-center p-6 text-right bg-white hover:bg-gray-50 transition-all cursor-pointer"
               >
-                <span className="text-dark text-[1.4rem] font-bold">
+                <span className="text-dark md:text-[1.4rem] text-lg font-bold">
                   {item.question}
                 </span>
                 <svg
@@ -75,7 +75,7 @@ const Faq = () => {
 
               {/* Green bar - only shows when accordion is open */}
               {openIndex === index && (
-                <div className="absolute right-0 top-0 bg-primary h-full w-[0.3rem] rounded-t-lg rounded-b-lg"></div>
+                <div className={`absolute ${i18next.language == "ar"?'right-0':'left-0'} top-0 bg-primary h-full w-[0.3rem] rounded-t-lg rounded-b-lg`}></div>
               )}
 
               <div

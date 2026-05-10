@@ -210,9 +210,9 @@ const BlogGrid = () => {
 
   return (
     <div className="container3 mx-auto mb-[4rem]">
-      <div className="grid grid-cols-12 gap-x-[4rem] mt-[3rem]">
+      <div className="grid lg:grid-cols-12 gap-y-[2rem] grid-cols-1 gap-x-[4rem] mt-[3rem]">
         {/* first column */}
-        <div className="col-span-4">
+        <div className="lg:col-span-4 col-span-1">
           <div className="relative">
             <input
               type="text"
@@ -306,8 +306,8 @@ const BlogGrid = () => {
         </div>
 
         {/* second column */}
-        <div className="col-span-8 mr-[-1.5rem]">
-          <div className="grid grid-cols-3 gap-[2rem]">
+        <div className="lg:col-span-8 cols-span-1 lg:mr-[-1.5rem]">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1e gap-[2rem]">
             <AnimatePresence mode="wait">
               {visibleItems?.map((blogItem, index) => {
                 const isNewImage = newImages.includes(index);

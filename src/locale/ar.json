@@ -16,5 +16,13 @@
         "goHome": "الرئيسية",
         "help": "تحتاج مساعدة؟",
         "contact": "اتصل بالدعم"
+    },
+    "home": {
+        "discover_companies": "اكتشف الشركات",
+        "browse_products": "تصفح المنتجات",
+        "about_us": "من نحن",
+        "Awn_app": "تطبيق عون",
+        "number_speak": "ارقام تتحدث",
+        "download_app": "حمل التطبيق الآن"
     }
 }

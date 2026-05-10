@@ -32,9 +32,9 @@ const Achievements = () => {
           {i18next.t("achievements")}
         </h1>
         <div className = "flex justify-center items-center">
-          <SubTitle subTitle={"أرقام تتحدث"} />
+          <SubTitle subTitle={i18next.t("home.number_speak")} />
         </div>
-        <div className="grid grid-cols-3 gap-x-[4rem] mt-[3rem]">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-[4rem] gap-y-[2rem] mt-[3rem]">
           {achievementsItems?.map((achievementsItems) => (
             <div className="w-full h-[22rem] p-[3rem] rounded-xl bg-white">
               <div className="w-[4rem] h-[4rem] rounded-xl bg-[#0664110D] flex justify-center items-center">

@@ -4,7 +4,7 @@ import uploadImage from "../../../assets/images/upload.svg";
 import AppDownloadFooterButton from "../../../ui/AppDownloadFooterButton";
 const AppDownloadFooter = () => {
   return (
-    <div className="w-full h-auto py-[6rem] bg-[#FBF9F4]">
+    <div className="w-full h-auto lg:py-[6rem] py-[3rem] bg-[#FBF9F4]">
       <div className="container2 mx-auto">
         <div className="flex flex-col justify-center items-center">
           <SecondTitleStyle title={"المنصة في جيبك"} />
