@@ -11,37 +11,41 @@ const MainSection = () => {
           <div className="w-[9rem] bg-[#06641A1A] gap-x-2 rounded-4xl h-[2rem] flex justify-center items-center mx-auto lg:mx-0">
             <div className="w-[0.5rem] h-[0.5rem] rounded-full bg-primary"></div>
             <p className="text-[0.9rem] text-primary font-bold">
-              رؤية عمان 2040
+              {i18next.t("home.oman_vission")}
             </p>
           </div>
 
           {/* Desktop heading */}
           <div className="lg:block hidden">
-            <h1 className={`text-secondary lg:text-[7rem] text-[3rem] font-bold text-center ${i18next.language == "ar"?'lg:text-right':'lg:text-left'}`}>
-              ندعم المنتج
+            <h1
+              className={`text-secondary lg:text-[7rem] text-[3rem] font-bold text-center ${i18next.language == "ar" ? "lg:text-right" : "lg:text-left"}`}
+            >
+              {i18next.t("home.support_product")}
               <br />
-              <span className="text-dark">العماني..</span>
+              <span className="text-dark">{i18next.t("home.Omani")}</span>
             </h1>
           </div>
 
           {/* Mobile heading */}
           <div className="lg:hidden block">
             <h1 className="text-secondary text-[2.5rem] md:text-[3rem] font-bold text-center">
-              ندعم المنتج <span className="text-dark">العماني..</span>
+              {i18next.t("home.support_product")}{" "}
+              <span className="text-dark">{i18next.t("home.Omani")}</span>
             </h1>
           </div>
 
-          <p className={`text-[1.125rem] md:text-[1.5rem] mt-[1rem] w-full lg:w-[80%] text-[#525252] leading-relaxed text-center ${i18next.language == "ar"?'lg:text-right':'lg:text-left'}`}>
-            نربط الشركات بالمستهلك مباشرة. نسعى لتمكين الابتكار الصناعي المحلي
-            وبناء جسور الثقة بين المنتج الوطني والمستهلك العالمي.
+          <p
+            className={`text-[1.125rem] md:text-[1.5rem] mt-[1rem] w-full lg:w-[80%] text-[#525252] leading-relaxed text-center ${i18next.language == "ar" ? "lg:text-right" : "lg:text-left"}`}
+          >
+            {i18next.t("home.main_image_description")}{" "}
           </p>
 
           <div className="mt-[2rem] md:mt-[3rem] flex flex-col sm:flex-row gap-y-3 sm:gap-y-0 gap-x-[1rem] justify-center lg:justify-start">
             <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] bg-primary cursor-pointer shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-white hover:bg-primary/90 transition-colors">
-              {i18next.t("home.discover_companies")}
+              {i18next.t("home.discover_services")}
             </button>
             <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-dark hover:bg-[#ccd0d4] transition-colors">
-              {i18next.t("home.browse_products")}
+              {i18next.t("home.discover_products")}
             </button>
           </div>
         </div>
@@ -70,12 +74,12 @@ const MainSection = () => {
                   />
                 </div>
                 <p className="font-bold text-sm md:text-md text-dark">
-                  جودة معتمدة
+                  {i18next.t("home.certified_quality")}
                 </p>
               </div>
               <div>
                 <p className="px-0 md:px-4 mt-2 text-[#5C403F] text-xs md:text-base text-center">
-                  منتجاتنا تخضع لأعلى معايير الجودة العمانية المعتمدة.
+                  {i18next.t("home.product_quality")}{" "}
                 </p>
               </div>
             </div>

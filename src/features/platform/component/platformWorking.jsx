@@ -4,32 +4,33 @@ import step1 from "../../../assets/images/step1.svg";
 import step2 from "../../../assets/images/step2.svg";
 import step3 from "../../../assets/images/step3.svg";
 import step4 from "../../../assets/images/step4.svg";
+import i18next from "i18next";
 
 const PlatformWorking = () => {
   const steps = [
     {
       image: step1,
-      title: "الخطوة 01",
-      subTitle: "تسجيل المنشأة",
-      desc: "سجل مصنعك أو شركتك في دقائق عبر واجهة سهلة وسريعة.",
+      title: `${i18next.t("platform_working.step")} 01`,
+      subTitle: i18next.t("platform_working.business_registration"),
+      desc: i18next.t("platform_working.register_factory"),
     },
     {
       image: step2,
-      title: "الخطوة 02",
-      subTitle: "إضافة المنتجات",
-      desc: "ارفع قائمة منتجاتك مع تفاصيل المواصفات والصور الاحترافية.",
+      title: `${i18next.t("platform_working.step")} 02`,
+      subTitle: i18next.t("platform_working.add_products"),
+      desc: i18next.t("platform_working.upload_product_list"),
     },
     {
       image: step3,
-      title: "الخطوة 03",
-      subTitle: "الإدراج والربط",
-      desc: "يتم عرض منتجاتك في السوق الرقمي للمشترين والباحثين عن الجودة.",
+      title: `${i18next.t("platform_working.step")} 03`,
+      subTitle: i18next.t("platform_working.Listing_and_linking"),
+      desc: i18next.t("platform_working.product_displayed"),
     },
     {
       image: step4,
-      title: "الخطوة 04",
-      subTitle: "الاستحواذ والبيع",
-      desc: "استقبل الطلبات مباشرة ونمو مبيعاتك عبر قنواتنا التسويقية.",
+      title: `${i18next.t("platform_working.step")} 04`,
+      subTitle: i18next.t("platform_working.acquisition_and_selling"),
+      desc: i18next.t("platform_working.receive_orders"),
     },
   ];
 
@@ -43,8 +44,8 @@ const PlatformWorking = () => {
     <div className="h-auto pb-[5rem] bg-[#F5F3EE] rounded-md">
       <div className="flex items-center justify-center pt-[5rem]">
         <div className="flex flex-col justify-center items-center">
-          <TitleStyle title={"رحلة المستخدم"} />
-          <SubTitle subTitle={"كيف تعمل المنصة؟"} />
+          <TitleStyle title={i18next.t("platform_working.user_journey")} />
+          <SubTitle subTitle={i18next.t("platform_working.platform_working")} />
         </div>
       </div>
       <div className="container1 mx-auto">

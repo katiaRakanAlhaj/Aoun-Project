@@ -9,6 +9,7 @@
     },
     "achievements": "Achievements",
     "available_on": "Available on",
+    "Success_partners": "Success partners",
     "404": {
         "title": "Sorry! Page Not Found",
         "message": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
@@ -18,11 +19,131 @@
         "contact": "Contact Support"
     },
     "home": {
-        "discover_companies": "Discover the companies",
+        "discover_services": "Discover Services",
+        "discover_products": "Discover Products",
         "browse_products": "Browse products",
         "about_us": "About Us",
         "Awn_app": "The Awn application",
         "number_speak": "Numbers speak",
-        "download_app": "Download the app now"
+        "download_app": "Download the app now",
+        "oman_vission": "Oman Vision 2026",
+        "support_product": "We support the product",
+        "Omani": "Omani",
+        "product_quality": "Our products meet the highest certified Omani quality standards.",
+        "certified_quality": "Certified Quality",
+        "supporting_the_national_economy": "Start your journey in supporting the national economy. Browse, compare, and buy Omani products easily and securely through our all-in-one application.",
+        "main_image_description": "We connect businesses directly with consumers. We strive to empower local industrial innovation and build bridges of trust between national products and the global consumer."
+    },
+    "footer": {
+        "footer_description": "The leading official platform for connecting Omani businesses with consumers, in line with the Sultanate's goals of enhancing local added value.",
+        "footer_rights": "© 2024 Aoun Platform. All rights reserved."
+    },
+    "platform_working": {
+        "about_platform": "About the platform",
+        "user_journey": "User journey",
+        "platform_working": "How does the platform work?",
+        "step": "step",
+        "business_registration": "Business Registration",
+        "register_factory": "Register your factory or company in minutes through an easy and fast interface",
+        "add_products": "Add Products",
+        "upload_product_list": "Upload your product list with detailed specifications and professional images.",
+        "Listing_and_linking": "Listing and linking",
+        "product_displayed": "Your products are displayed in the digital marketplace to buyers and seekers of quality.",
+        "acquisition_and_selling": "Acquisition and selling",
+        "receive_orders": "Receive orders directly and grow your sales through our marketing channels."
+    },
+    "for_company": {
+        "for_company": "For companies and factories",
+        "Expand your company's horizons": "Expand your company's horizons",
+        "Digitally": "Digitally",
+        "companies_offers": "We offer Omani companies an integrated platform for growth. Through us, you can reach a wide customer base locally and regionally, with advanced analytical tools and a specialized marketing team that highlights the quality of your products.",
+        "Integrated digital identity for your company": "Integrated digital identity for your company",
+        "Smart inventory management tools": "Smart inventory management tools",
+        "Sales performance and growth reports": "Sales performance and growth reports",
+        "professional_marketing": "Professional marketing for your brand",
+        "Increase in digital reach": "Increase in digital reach",
+        "register_company": "Register your company now"
+    },
+    "For_buyers_and_consumers": {
+        "For_buyers_and_consumers": "For buyers and consumers",
+        "support_company": "Support your nation's economy with one click",
+        "discover_best_products": "Discover the best Omani products that match global quality. Our platform offers you a modern, secure shopping experience that supports local products you can be proud of.",
+        "Ease_of_discovery": "Ease of discovery",
+        "true_and_security": "Trust and security",
+        "smart_search": "Smart search by categories",
+        "secure_payment": "Secure payment and local warranty",
+        "download_app": "Download the app"
+    },
+    "build_future": {
+        "build_future": "Let's build the future together",
+        "be_part_of_industrial_transformation": "And be a part of the digital industrial transformation in the Sultanate of Oman. Join thousands of companies and buyers today."
+    },
+    "services_description": {
+        "services": "Services",
+        "our_story_and_vision": "Our story and vision",
+        "Omani_innovation": "We believe that Omani innovation and quality deserve to reach every home. The 'Omani Industry' platform is the leading digital initiative that seeks to transform the industrial sector in the Sultanate in line with Oman Vision 2026.",
+        "digital_enviroment": "We aim to create an integrated digital environment that supports local industries and enhances their global competitiveness through technology and artificial intelligence."
+    },
+    "journey_of_success": {
+        "journey_of_success": "The journey of success",
+        "Business_registration": "Business registration",
+        "simple_steps": "Simple steps to document and officially approve your factory on the platform.",
+        "add_products": "Add Products",
+        "upload_product_list": "Upload your product details, images, and technical specifications with ease.",
+        "display_product": "Display Products",
+        "product_appear": "Your products appear in a modern interface reaching thousands of consumers daily.",
+        "Acquisition_and_Selling": "Acquisition & Selling",
+        "receive_orders": "Receive orders and complete sales securely and directly"
+    },
+    "Technical_solutions": {
+        "technical_solutions": "Technical solutions",
+        "order_and_purchase_system": "Ordering and purchasing system",
+        "electronic_payment": "Electronic payment",
+        "factory_profiles": "Factory profiles",
+        "digital_marketing": "Digital marketing",
+        "reports_and_analytics": "Reports and analytics"
+    },
+    "ForIndustrialCompanies": {
+        "for_industrial_companies": "For industrial companies",
+        "double_your_growth": "Double your digital growth and raise your sales ceiling by joining the largest Omani industrial community. Our platform provides you with the necessary tools to reach new markets.",
+        "register_your_factory_now": "Register your factory now"
+    },
+    "PartnerInConstruction": {
+        "be_a_partner": "Be a partner in construction",
+        "shopping_support_message": "Shopping for Omani products is not just a purchase; it is direct support for the Omani employee and an investment in the strength of our national economy."
+    },
+    "AppDownloadFooter": {
+        "platform_in_your_pocket": "The platform in your pocket",
+        "download_app_description": "Download the app now and enjoy a unique industrial shopping experience."
+    },
+    "ProductImage": {
+        "products_showroom": "Products Showroom and Success Partners",
+        "products_description": "The integrated Omani industrial platform for showcasing local innovations and connecting Omani manufacturers to global markets, supported by an elite group of sovereign institutions and strategic partners."
+    },
+    "ProductsGrid": {
+        "browse_industrial_products": "Browse industrial products",
+        "explore_description": "Explore Omani industrial excellence across various sectors",
+        "see_more": "See more"
+    },
+    "GovernmentAgencies": {
+        "join_our_industrial_community": "Join our industrial community",
+        "stay_updated": "Stay updated on the latest products and investment opportunities in the Omani industrial sector."
+    },
+    "FAQ": {
+        "faq_title": "Frequently Asked Questions",
+        "faq_subtitle": "Quick solutions to your inquiries"
+    },
+    "ContactGrid": {
+        "contact_us_directly": "Contact us directly",
+        "response_time": "We will respond to your inquiries within less than 24 business hours.",
+        "full_name": "Full name",
+        "email": "Email address",
+        "subject": "Subject",
+        "message": "Message",
+        "send": "Send",
+        "email_title": "Email",
+        "phone_title": "Phone",
+        "main_headquarters": "Main headquarters",
+        "address": "Sultanate of Oman, Muscat, Ghala Industrial Area, Fourth Floor"
     }
 }

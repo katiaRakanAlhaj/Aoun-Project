@@ -11,23 +11,22 @@ const UploadNow = () => {
           <div className="container2 mx-auto">
             <div className="grid lg:grid-cols-12 grid-cols-1 gap-x-[4rem]">
               <div className="lg:col-span-6 col-span-1 flex flex-col justify-center">
-                <div className={`flex flex-col justify-center ${i18next.language == "ar"?'lg:mr-[4rem] mr-[2rem]':'lg:ml-[4rem] ml-[2rem]'}`}>
+                <div
+                  className={`flex flex-col justify-center ${i18next.language == "ar" ? "lg:mr-[4rem] mr-[2rem]" : "lg:ml-[4rem] ml-[2rem]"}`}
+                >
                   <h1 className="font-bold text-white lg:text-[4rem] text-[2rem]">
                     {i18next.t("home.download_app")}
                   </h1>
                   <p className="md:text-[1.4rem] text-[1.2rem] mt-[2rem] text-[#FFFFFF] w-[86%] leading-[3rem]">
-                    ابدأ رحلتك في دعم الاقتصاد الوطني. تصفح، قارن، واشترِ
-                    المنتجات العمانية بكل سهولة وأمان من خلال تطبيقنا المتكامل.
+                    {i18next.t("home.supporting_the_national_economy")}
                   </p>
                   <div className="md:flex md:gap-x-[1.5rem] lg:mt-[3rem]">
                     <ButtonUpload
-                      mrClass="mr-[-1.4rem]" // full Tailwind class with brackets
                       title={i18next.t("available_on")}
                       image={mobile}
                       description={"App Store"}
                     />
                     <ButtonUpload
-                      mrClass="mr-[-2.6rem]"
                       title={i18next.t("available_on")}
                       image={googlePlay}
                       description={"Google Play"}

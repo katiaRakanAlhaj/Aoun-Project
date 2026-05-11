@@ -4,15 +4,15 @@ import PlatformCompanies from "../features/platform/component/platformCompanies"
 import PlatformImage from "../features/platform/component/platformImage";
 import PlatformWorking from "../features/platform/component/platformWorking";
 
-const Platform = ()=> {
-    return(
-        <div>
-            <PlatformImage/>
-            <PlatformWorking/>
-           <PlatformCompanies/>
-            <DownloadAppSection/>
-            <BuildFuture/> 
-        </div>
-    )
-}
+const Platform = () => {
+  return (
+    <div>
+      <PlatformImage />
+      <PlatformWorking />
+      <PlatformCompanies />
+      <DownloadAppSection />
+      <BuildFuture />
+    </div>
+  );
+};
 export default Platform;

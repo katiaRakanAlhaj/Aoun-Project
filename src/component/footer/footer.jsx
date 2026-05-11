@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.svg";
 import global from "../../assets/images/global.svg";
 import sharing from "../../assets/images/sharing.svg";
+import i18next from "i18next";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -75,7 +76,9 @@ const Footer = () => {
       <div className="container1 mx-auto px-4 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0">
           {/* first column */}
-          <div className="md:col-span-6 text-center md:text-right">
+          <div
+            className={`md:col-span-6 text-center ${i18next.language == "ar" ? "md:text-right" : "md:text-left"}`}
+          >
             <Link to={getLocalizedPath("")}>
               <img
                 className="w-[10.5rem] mx-auto md:mx-0 cursor-pointer"
@@ -84,8 +87,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-[#78716C] text-md w-full md:w-[55%] leading-relaxed mt-[1.5rem] mx-auto md:mx-0">
-              المنصة الرسمية الرائدة لربط الشركات العمانية بالمستهلكين، تماشياً
-              مع أهداف السلطنة في تعزيز القيمة المحلية المضافة.
+              {i18next.t("footer.footer_description")}{" "}
             </p>
             <div className="flex gap-x-4 mt-[1.5rem] justify-center md:justify-start">
               <div className="w-[3rem] h-[3rem] flex justify-center items-center bg-[#E4E7E5] rounded-xl cursor-pointer hover:bg-[#d4d7d5] transition-colors">
@@ -99,8 +101,12 @@ const Footer = () => {
 
           {/* second column */}
           <div className="md:col-span-6 md:mt-[3rem]">
-            <div className="grid grid-cols-2 gap-4 md:mr-[1.4rem]">
-              <div className="flex flex-col space-y-4 text-center md:text-right">
+            <div
+              className={`grid grid-cols-2 gap-4 ${i18next.language == "ar" ? "md:mr-[1.4rem]" : "md:ml-[1.4rem]"}`}
+            >
+              <div
+                className={`flex flex-col space-y-4 text-center ${i18next.language == "ar" ? "md:text-right" : "md:text-left"}`}
+              >
                 {firstColumn?.map((item, index) => (
                   <Link key={index} to={getLocalizedPath(item.path)}>
                     <p
@@ -115,7 +121,9 @@ const Footer = () => {
                   </Link>
                 ))}
               </div>
-              <div className="flex flex-col space-y-4 text-center md:text-right">
+              <div
+                className={`flex flex-col space-y-4 text-center ${i18next.language == "ar" ? "md:text-right" : "md:text-left"}`}
+              >
                 {secondColumn?.map((item, index) => (
                   <Link key={index} to={getLocalizedPath(item.path)}>
                     <p
@@ -138,12 +146,11 @@ const Footer = () => {
 
         <div className="flex justify-center items-center mt-[2rem]">
           <p className="text-[#ADADAD] text-sm md:text-lg text-center">
-            © 2024 Aoun Platform. All rights reserved.
+            {i18next.t("footer.footer_rights")}{" "}
           </p>
         </div>
       </div>
     </div>
   );
 };
-
 export default Footer;

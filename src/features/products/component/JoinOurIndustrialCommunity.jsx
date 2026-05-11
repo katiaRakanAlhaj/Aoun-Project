@@ -15,6 +15,7 @@ import sharing3 from "../../../assets/images/sharing3.jpg";
 import sharing4 from "../../../assets/images/sharing4.jpg";
 import sharing5 from "../../../assets/images/sharing5.jpg";
 import sharing6 from "../../../assets/images/sharing6.jpg";
+import i18next from "i18next";
 
 const JoinOurIndustrialCommunity = () => {
   const data = [
@@ -42,7 +43,7 @@ const JoinOurIndustrialCommunity = () => {
   return (
     <div className="w-full h-auto bg-[#FFFFFF] lg:py-[5rem] py-[3rem]">
       <div className="flex justify-center flex-col items-center">
-        <SecondTitleStyle title={"شركاء النجاح"} />
+        <SecondTitleStyle title={i18next.t("Success_partners")} />
         <div className="w-[6.5rem] h-[0.3rem] bg-secondary mt-[1rem] rounded-full"></div>
       </div>
 

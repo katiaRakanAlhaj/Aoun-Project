@@ -5,6 +5,7 @@ import { DownloadAppSectionButton } from "../../../ui/DownloadAppSectionButton";
 import MainSection from "../../home/component/mainSection";
 import supplierImage from "../../../assets/images/supplierImage.png";
 import upload from "../../../assets/images/upload.svg";
+import i18next from "i18next";
 const DownloadAppSection = () => {
   return (
     <div className="bg-[#FBF9F4]">
@@ -14,30 +15,45 @@ const DownloadAppSection = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-[2.5rem] h-full">
               {/* first column */}
               <div className="flex flex-col justify-center">
-                <TitleStyle title="للمشترين والمستهلكين" />
+                <TitleStyle
+                  title={i18next.t(
+                    "For_buyers_and_consumers.For_buyers_and_consumers",
+                  )}
+                />
                 <p className="font-bold lg:text-[2.5rem] text-[1.5rem] text-[#1B1C19] lg:w-[70%] mt-[1rem]">
-                  ادعم اقتصاد وطنك بلمسة زر واحدة
+                  {i18next.t("For_buyers_and_consumers.support_company")}{" "}
                 </p>
                 <p className="text-[#5C403F] text-xl leading-relaxed mt-[1.5rem]">
-                  اكتشف أفضل المنتجات العمانية التي تضاهي الجودة العالمية.
-                  منصتنا توفر لك تجربة تسوق حديثة، آمنة، وداعمة للمنتج المحلي
-                  الذي تفتخر به.
+                  {i18next.t(
+                    "For_buyers_and_consumers.discover_best_products",
+                  )}{" "}
                 </p>
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-y-[2rem] gap-x-[1.4rem] mt-[2rem]">
                   <DownloadAppSectionButton
                     image={explore}
-                    title="سهولة الاكتشاف"
-                    description={"بحث ذكي حسب الفئات"}
+                    title={i18next.t(
+                      "For_buyers_and_consumers.Ease_of_discovery",
+                    )}
+                    description={i18next.t(
+                      "For_buyers_and_consumers.smart_search",
+                    )}
                   />
                   <DownloadAppSectionButton
                     image={secure}
-                    title="ثقة وأمان"
-                    description="دفع آمن وضمان محلي"
+                    title={i18next.t(
+                      "For_buyers_and_consumers.true_and_security",
+                    )}
+                    description={i18next.t(
+                      "For_buyers_and_consumers.secure_payment",
+                    )}
                   />
                 </div>
                 <button className="w-full h-[4rem] rounded-md gap-x-4 bg-secondary mt-[3rem] cursor-pointer flex justify-center items-center">
                   <img src={upload} className="w-[1.2rem]" />
-                  <p className="font-bold text-white text-lg">حمل التطبيق</p>
+                  <p className="font-bold text-white text-lg">
+                    {" "}
+                    {i18next.t("For_buyers_and_consumers.download_app")}
+                  </p>
                 </button>
               </div>
               {/* second column */}

@@ -9,6 +9,7 @@
     },
     "achievements": "الإنجازات",
     "available_on": "متوفر على",
+    "Success_partners": "شركاء النجاح",
     "404": {
         "title": "عذراً! الصفحة غير موجودة",
         "message": "ربما تمت إزالة الصفحة التي تبحث عنها أو تغيير اسمها أو أنها غير متاحة مؤقتاً.",
@@ -18,11 +19,131 @@
         "contact": "اتصل بالدعم"
     },
     "home": {
-        "discover_companies": "اكتشف الشركات",
-        "browse_products": "تصفح المنتجات",
+        "discover_services": "اكتشف الخدمات",
+        "discover_products": "اكتشف المنتجات",
         "about_us": "من نحن",
         "Awn_app": "تطبيق عون",
         "number_speak": "ارقام تتحدث",
-        "download_app": "حمل التطبيق الآن"
+        "download_app": "حمل التطبيق الآن",
+        "oman_vission": "رؤية عمان 2026",
+        "support_product": "ندعم المنتج",
+        "Omani": "العماني...",
+        "product_quality": "منتجاتنا تخضع لأعلى معايير الجودة العمانية المعتمدة.",
+        "certified_quality": "جودة معتمدة",
+        "supporting_the_national_economy": "ابدأ رحلتك في دعم الاقتصاد الوطني. تصفح، قارن، واشترِ المنتجات العمانية بكل سهولة وأمان من خلال تطبيقنا المتكامل.",
+        "main_image_description": "نربط الشركات بالمستهلك مباشرة. نسعى لتمكين الابتكار الصناعي المحلي وبناء جسور الثقة بين المنتج الوطني والمستهلك العالمي."
+    },
+    "footer": {
+        "footer_description": "المنصة الرسمية الرائدة لربط الشركات العمانية بالمستهلكين، تماشياً مع أهداف السلطنة في تعزيز القيمة المحلية المضافة.",
+        "footer_rights": "© 2024 منصة عون. جميع الحقوق محفوظة."
+    },
+    "platform_working": {
+        "about_platform": "عن المنصة",
+        "user_journey": "رحلة المستخدم",
+        "platform_working": "كيف تعمل المنصة؟",
+        "step": "الخطوة",
+        "business_registration": "تسجيل المنشأة",
+        "register_factory": "سجل مصنعك أو شركتك في دقائق عبر واجهة سهلة وسريعة.",
+        "add_products": "إضافة المنتجات",
+        "upload_product_list": "ارفع قائمة منتجاتك مع تفاصيل المواصفات والصور الاحترافية.",
+        "Listing_and_linking": "الإدراج والربط",
+        "product_displayed": "يتم عرض منتجاتك في السوق الرقمي للمشترين والباحثين عن الجودة.",
+        "acquisition_and_selling": "الاستحواذ والبيع",
+        "receive_orders": "استقبل الطلبات مباشرة ونمو مبيعاتك عبر قنواتنا التسويقية."
+    },
+    "for_company": {
+        "for_company": "للشركات والمصانع",
+        "Expand your company's horizons": "وسّع آفاق شركتك",
+        "Digitally": "رقمياً",
+        "companies_offers": "نقدم للشركات العمانية منصة متكاملة للنمو. من خلالنا، يمكنك الوصول إلى قاعدة عملاء واسعة محلياً وإقليمياً، مع أدوات تحليلية متقدمة وفريق تسويق متخصص يبرز جودة منتجاتك",
+        "Integrated digital identity for your company": "هوية رقمية متكاملة لشركتك",
+        "Smart inventory management tools": "أدوات إدارة المخزون الذكية",
+        "Sales performance and growth reports": "تقارير أداء المبيعات والنمو",
+        "professional_marketing": "تسويق احترافي لعلامتك التجارية",
+        "Increase in digital reach": "زيادة في الانتشار الرقمي",
+        "register_company": "سجل شركتك الآن"
+    },
+    "For_buyers_and_consumers": {
+        "For_buyers_and_consumers": "للمشترين والمستهلكين",
+        "support_company": "ادعم اقتصاد وطنك بلمسة زر واحدة",
+        "discover_best_products": "اكتشف أفضل المنتجات العمانية التي تضاهي الجودة العالمية. منصتنا توفر لك تجربة تسوق حديثة، آمنة، وداعمة للمنتج المحلي الذي تفتخر به",
+        "Ease_of_discovery": "سهولة الاكتشاف",
+        "true_and_security": "ثقة وأمان",
+        "smart_search": "بحث ذكي حسب الفئات",
+        "secure_payment": "دفع آمن وضمان محلي",
+        "download_app": "حمل التطبيق"
+    },
+    "build_future": {
+        "build_future": "لنصنع المستقبل معاً",
+        "be_part_of_industrial_transformation": "كونوا جزءاً من التحول الصناعي الرقمي في سلطنة عمان. انضموا إلى آلاف الشركات والمشترين اليوم."
+    },
+    "services_description": {
+        "services": "خدماتنا",
+        "our_story_and_vision": "قصتنا ورؤيتنا",
+        "Omani_innovation": "نحن نؤمن بأن الابتكار والجودة العمانية يستحقان الوصول إلى كل بيت.منصة الصناعة العمانية هي المبادرة الرقمية الرائدة التي تسعى لتحويل القطاع الصناعي في السلطنة بما يتواكب مع رؤية عمان 2026",
+        "digital_enviroment": "نهدف إلى خلق بيئة رقمية متكاملة تدعم الصناعات المحلية وتعزز من تنافسيتها عالمياً من خلال التكنولوجيا والذكاء الاصطناعي."
+    },
+    "journey_of_success": {
+        "journey_of_success": "رحلة النجاح",
+        "Business_registration": "تسجيل المنشأة",
+        "simple_steps": "خطوات بسيطة لتوثيق مصنعك واعتماده رسمياً في المنصة.",
+        "add_products": "إضافة المنتجات",
+        "upload_product_list": "ارفع تفاصيل منتجاتك، صورها، ومواصفاتها الفنية بكل سهولة.",
+        "display_product": "عرض المنتجات",
+        "product_appear": "تظهر منتجاتك في واجهة عصرية تصل لآلاف المستهلكين يومياً.",
+        "Acquisition_and_Selling": "الاستحواذ والبيع",
+        "receive_orders": "استقبل الطلبات وتمم عمليات البيع بشكل آمن ومباشر."
+    },
+    "Technical_solutions": {
+        "technical_solutions": "الحلول التقنية",
+        "order_and_purchase_system": "نظام الطلب والشراء",
+        "electronic_payment": "الدفع الإلكتروني",
+        "factory_profiles": "ملفات تعريف المصانع",
+        "digital_marketing": "التسويق الرقمي",
+        "reports_and_analytics": "التقارير والتحليلات"
+    },
+    "ForIndustrialCompanies": {
+        "for_industrial_companies": "للشركات الصناعية",
+        "double_your_growth": "ضاعف نموك الرقمي وارفع سقف مبيعاتك عبر الانضمام لأكبر تجمع صناعي عماني. منصتنا توفر لك الأدوات اللازمة للوصول لأسواق جديدة.",
+        "register_your_factory_now": "سجل مصنعك الآن"
+    },
+    "PartnerInConstruction": {
+        "be_a_partner": "كن شريكاً في البناء",
+        "shopping_support_message": "تسوقك للمنتجات العمانية ليس مجرد شراء، بل هو دعم مباشر للموظف العماني واستثمار في قوة اقتصادنا الوطني."
+    },
+    "AppDownloadFooter": {
+        "platform_in_your_pocket": "المنصة في جيبك",
+        "download_app_description": "حمل التطبيق الآن واستمتع بتجربة تسوق صناعية فريدة."
+    },
+    "ProductImage": {
+        "products_showroom": "معرض المنتجات وشركاء النجاح",
+        "products_description": "المنصة الصناعية العمانية المتكاملة لاستعراض الابتكارات المحلية وربط المصنعين العمانيين بالأسواق العالمية بدعم من نخبة المؤسسات السيادية والشركاء الاستراتيجيين."
+    },
+    "ProductsGrid": {
+        "browse_industrial_products": "تصفح المنتجات الصناعية",
+        "explore_description": "استكشف التميز الصناعي العماني عبر مختلف القطاعات",
+        "see_more": "شاهد المزيد"
+    },
+    "GovernmentAgencies": {
+        "join_our_industrial_community": "انضم إلى مجتمعنا الصناعي",
+        "stay_updated": "ابقَ على اطلاع بأحدث المنتجات والفرص الاستثمارية في القطاع الصناعي العماني."
+    },
+    "FAQ": {
+        "faq_title": "الأسئلة المتكررة",
+        "faq_subtitle": "حلول سريعة لاستفساراتكم"
+    },
+    "ContactGrid": {
+        "contact_us_directly": "تواصلوا معنا مباشرة",
+        "response_time": "سنقوم بالرد على استفساراتكم خلال أقل من 24 ساعة عمل.",
+        "full_name": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "subject": "الموضوع",
+        "message": "الرسالة",
+        "send": "إرسال",
+        "email_title": "البريد الإلكتروني",
+        "phone_title": "الهاتف",
+        "main_headquarters": "المقر الرئيسي",
+        "address": "سلطنة عمان، مسقط، منطقة غلا الصناعية، الطابق الرابع"
     }
+
 }

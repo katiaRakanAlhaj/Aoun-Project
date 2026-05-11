@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import send from "../../../assets/images/send.svg";
 import email from "../../../assets/images/email.svg";
 import phone from "../../../assets/images/phone.svg";
@@ -11,35 +12,35 @@ const ContactGrid = () => {
           {/* first column */}
           <div className="flex flex-col mt-[3rem]">
             <h1 className="font-bold md:text-[2.5rem] text-[2rem] text-[#333333]">
-              تواصلوا معنا مباشرة
+              {i18next.t("ContactGrid.contact_us_directly")}
             </h1>
             <p className="text-[#525252] text-lg mt-2">
-              سنقوم بالرد على استفساراتكم خلال أقل من 24 ساعة عمل.
+              {i18next.t("ContactGrid.response_time")}
             </p>
             <form className="mt-[2rem] flex flex-col space-y-[1.4rem]">
               <div className="grid grid-cols-2 gap-x-[0.8rem]">
                 <input
-                  placeholder="الاسم الكامل"
+                  placeholder={i18next.t("ContactGrid.full_name")}
                   type="text"
                   className="h-[3.8rem] w-full border px-[1.5rem] placeholder-[#959595] focus:outline-0 border-gray-300 rounded-md"
                 />
                 <input
-                  placeholder="البريد الإلكتروني"
+                  placeholder={i18next.t("ContactGrid.email")}
                   type="text"
                   className="h-[3.8rem] w-full border px-[1.5rem] placeholder-[#959595] focus:outline-0 border-gray-300 rounded-md"
                 />
               </div>
               <input
-                placeholder="الموضوع"
+                placeholder={i18next.t("ContactGrid.subject")}
                 type="text"
                 className="h-[3.8rem] w-full border px-[1.5rem] placeholder-[#959595] focus:outline-0 border-gray-300 rounded-md"
               />
               <textarea
-                placeholder="الرسالة"
+                placeholder={i18next.t("ContactGrid.message")}
                 className="h-[17rem] w-full border p-[1.5rem] placeholder-[#959595] focus:outline-0 border-gray-300 rounded-md"
               />
               <button className="w-full h-[5rem] bg-primary rounded-md flex gap-x-2 items-center justify-center text-lg font-bold text-white cursor-pointer">
-                <p>إرسال</p>
+                <p>{i18next.t("ContactGrid.send")}</p>
                 <img className="w-[1.5rem] h-[1.5rem]" src={send} alt="send" />
               </button>
             </form>
@@ -53,7 +54,7 @@ const ContactGrid = () => {
                   <img src={email} className="w-[1.5rem] h-[1.5rem]" alt="email" />
                 </div>
                 <h1 className="font-bold text-dark md:text-2xl text-xl">
-                  البريد الإلكتروني
+                  {i18next.t("ContactGrid.email_title")}
                 </h1>
                 <p className="text-primary text-lg">support@al-majan.om</p>
               </div>
@@ -62,7 +63,7 @@ const ContactGrid = () => {
                   <img src={phone} className="w-[1.5rem] h-[1.5rem]" alt="phone" />
                 </div>
                 <h1 className="font-bold text-dark md:text-2xl text-xl">
-                  الهاتف
+                  {i18next.t("ContactGrid.phone_title")}
                 </h1>
                 <p className="text-primary text-lg">+968 2440 0000</p>
               </div>
@@ -72,8 +73,12 @@ const ContactGrid = () => {
               <div className="flex gap-x-[1rem] lg:px-0 px-[1rem]">
                 <img className="w-[2rem] h-[2rem] mt-4" src={location} alt="location" />
                 <div>
-                  <h1 className="font-bold text-white text-xl">المقر الرئيسي</h1>
-                  <p className="text-[#FFFFFF] text-lg mt-2">سلطنة عمان، مسقط، منطقة غلا الصناعية، الطابق الرابع</p>
+                  <h1 className="font-bold text-white text-xl">
+                    {i18next.t("ContactGrid.main_headquarters")}
+                  </h1>
+                  <p className="text-[#FFFFFF] text-lg mt-2">
+                    {i18next.t("ContactGrid.address")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -87,7 +92,7 @@ const ContactGrid = () => {
                 allowFullScreen 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Location Map"
+                title={i18next.t("ContactGrid.location_map")}
               />
             </div>
           </div>

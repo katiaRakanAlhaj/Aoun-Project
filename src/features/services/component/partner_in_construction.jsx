@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import hand from "../../../assets/images/hand.svg";
 import partnerImage from "../../../assets/images/partnerImage.png";
 const PartnerInConstruction = () => {
@@ -9,11 +10,10 @@ const PartnerInConstruction = () => {
             <img className="w-[2.5rem] h-[2.5rem] object-contain" src={hand} />
           </div>
           <p className="text-[#333333] text-[2rem] mt-[1rem] font-bold">
-            كن شريكاً في البناء
+            {i18next.t("PartnerInConstruction.be_a_partner")}{" "}
           </p>
           <p className="text-xl text-[#525252] mt-[1rem]">
-            تسوقك للمنتجات العمانية ليس مجرد شراء، بل هو دعم مباشر للموظف
-            العماني واستثمار في قوة اقتصادنا الوطني.
+            {i18next.t("PartnerInConstruction.shopping_support_message")}{" "}
           </p>
         </div>
         <img

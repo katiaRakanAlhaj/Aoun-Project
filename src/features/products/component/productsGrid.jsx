@@ -6,6 +6,7 @@ import product4 from "../../../assets/images/product4.jpg";
 import product5 from "../../../assets/images/product5.jpg";
 import producIcon from "../../../assets/images/productIcon.svg";
 import download from "../../../assets/images/download.svg";
+import i18next from "i18next"
 const ProductsGrid = () => {
   const productsGridItems = [
     {
@@ -72,9 +73,11 @@ const ProductsGrid = () => {
   return (
     <div className="h-auto  lg:py-[5rem] py-[3rem] w-full">
       <div className="container2 mx-auto lg:px-[2rem] px-[1rem]">
-        <SecondTitleStyle title={"تصفح المنتجات الصناعية"} />
+        <SecondTitleStyle
+          title={i18next.t("ProductsGrid.browse_industrial_products")}
+        />
         <p className="text-[#525252] text-lg mt-[1rem]">
-          استكشف التميز الصناعي العماني عبر مختلف القطاعات
+          {i18next.t("ProductsGrid.explore_description")}{" "}
         </p>
         <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-x-[2rem] gap-y-[3.5rem] mt-[3rem]">
           {productsGridItems?.map((product, index) => (
@@ -99,7 +102,10 @@ const ProductsGrid = () => {
       </div>
       <div className="flex justify-center items-center mt-[5rem]">
         <button className="w-[16rem] h-[4rem] rounded-md bg-primary flex justify-center items-center gap-x-5 cursor-pointer">
-          <p className="text-white font-bold text-lg">شاهد المزيد</p>
+          <p className="text-white font-bold text-lg">
+            {" "}
+            {i18next.t("ProductsGrid.see_more")}
+          </p>
           <img src={download} />
         </button>
       </div>

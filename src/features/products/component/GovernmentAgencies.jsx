@@ -14,13 +14,16 @@ const GovernmentAgencies = () => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-[2rem] lg:gap-x-[4rem] px-[1.5rem] lg:px-[4.5rem] w-full">
           <div className="lg:col-span-7">
-            <div className={`flex flex-col justify-center text-center ${i18next.language == "ar"?'lg:text-right':'lg:text-left'}`}>
+            <div
+              className={`flex flex-col justify-center text-center ${i18next.language == "ar" ? "lg:text-right" : "lg:text-left"}`}
+            >
               <h1 className="font-bold text-[1.75rem] lg:text-[2.5rem] text-white leading-tight">
-                انضم إلى مجتمعنا الصناعي
+                {i18next.t(
+                  "GovernmentAgencies.join_our_industrial_community",
+                )}
               </h1>
               <p className="text-white text-base lg:text-xl mt-3 leading-relaxed">
-                ابقَ على اطلاع بأحدث المنتجات والفرص الاستثمارية في القطاع
-                الصناعي العماني.
+                {i18next.t("GovernmentAgencies.stay_updated")}{" "}
               </p>
             </div>
           </div>
