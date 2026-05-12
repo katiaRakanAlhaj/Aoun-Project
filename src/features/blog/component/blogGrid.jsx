@@ -216,7 +216,7 @@ const BlogGrid = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="ابحث عن خبر"
+              placeholder={i18next.t("blog.search_for_news")}
               className={`w-full px-4 h-[3rem] text-sm ${i18next.language == "ar" ? "pr-10" : "pl-10"} rounded-t-lg bg-white border border-[#E7E8E9] focus:outline-none text-[#697077]`}
             />
             <div
@@ -239,7 +239,7 @@ const BlogGrid = () => {
             <button
               className={`absolute bottom-0  ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer`}
             >
-              بحث
+              {i18next.t("blog.search")}
             </button>
           </div>
           <div
@@ -247,13 +247,13 @@ const BlogGrid = () => {
             className="w-full h-auto rounded-b-3xl bg-white mt-[1rem] py-[1rem] px-[1.5rem]"
           >
             <h1 className="text-[#002F3C] text-[1.2rem] font-bold">
-              تصفية و ترتيب
+              {i18next.t("blog.filter_and_sort")}
             </h1>
-            <p className="text-[#333333] text-[1.2rem] mt-3">تصفية حسب</p>
+            <p className="text-[#333333] text-[1.2rem] mt-3">{i18next.t("blog.filter_by")}</p>
 
             <div className="flex flex-row mt-2 flex-wrap gap-x-[0.5rem] gap-y-[1rem]">
               <button className="w-auto h-[2.2rem] px-[1.5rem] rounded-full flex justify-center items-center text-[1.1rem]  bg-[#C2DAFF80] text-secondary">
-                الكل
+                {i18next.t("blog.all")}
               </button>
               {buttons?.map((button, index) => (
                 <div key={index}>
@@ -263,9 +263,9 @@ const BlogGrid = () => {
                 </div>
               ))}
             </div>
-            <p className="text-[#333333] text-[1.2rem] mt-6">رتب حسب</p>
+            {/* <p className="text-[#333333] text-[1.2rem] mt-6">رتب حسب</p> */}
             <div className="relative">
-              <select className="w-full px-4 py-3 mt-2 font-bold rounded-lg focus:outline-none appearance-none bg-[#E7F3EB] text-primary">
+              {/* <select className="w-full px-4 py-3 mt-2 font-bold rounded-lg focus:outline-none appearance-none bg-[#E7F3EB] text-primary">
                 <option
                   value=""
                   disabled
@@ -294,13 +294,13 @@ const BlogGrid = () => {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </div> */}
             </div>
             <button className="h-[3rem] w-full bg-primary rounded-lg mt-[1.5rem] font-bold text-white text-lg cursor-pointer">
-              تطبيق الفلتر
+              {i18next.t("blog.apply_filter")}
             </button>
             <p className="text-[#5B1B1B] text-sm mt-[1rem] text-center cursor-pointer">
-              إعادة تعيين
+              {i18next.t("reset")}
             </p>
           </div>
         </div>
@@ -338,7 +338,7 @@ const BlogGrid = () => {
                       className="absolute bottom-0 right-0 left-0"
                     >
                       <button className="h-[2.7rem] cursor-pointer w-full bg-primary rounded-b-3xl text-white font-bold text-lg">
-                        قراءة المزيد
+                        {i18next.t("blog.read_more")}
                       </button>
                     </Link>
                   </motion.div>
@@ -359,12 +359,14 @@ const BlogGrid = () => {
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     <p className="text-white font-bold text-lg">
-                      جاري التحميل...
+                      {i18next.t("loading")}
                     </p>
                   </>
                 ) : (
                   <>
-                    <p className="text-white font-bold text-lg">شاهد المزيد</p>
+                    <p className="text-white font-bold text-lg">
+                      {i18next.t("blog.see_more")}
+                    </p>
                     <img src={download} alt="download" />
                   </>
                 )}

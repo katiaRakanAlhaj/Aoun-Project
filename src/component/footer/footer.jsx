@@ -4,8 +4,13 @@ import logo from "../../assets/images/logo.svg";
 import global from "../../assets/images/global.svg";
 import sharing from "../../assets/images/sharing.svg";
 import i18next from "i18next";
+import { TfiFacebook } from "react-icons/tfi";
+import { FaWhatsapp, FaYoutube } from "react-icons/fa";
+import SocialIcons from "../../features/contact/component/socialIcons";
+import { useFetchContact } from "../../features/contact/hook/useFetchContact";
 
 const Footer = () => {
+  const {data:contactData , isLoading:contactDataLoading , error:contactDataError} = useFetchContact();
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -90,12 +95,7 @@ const Footer = () => {
               {i18next.t("footer.footer_description")}{" "}
             </p>
             <div className="flex gap-x-4 mt-[1.5rem] justify-center md:justify-start">
-              <div className="w-[3rem] h-[3rem] flex justify-center items-center bg-[#E4E7E5] rounded-xl cursor-pointer hover:bg-[#d4d7d5] transition-colors">
-                <img className="w-[1.3rem]" src={global} alt="global" />
-              </div>
-              <div className="w-[3rem] h-[3rem] flex justify-center items-center bg-[#E4E7E5] rounded-xl cursor-pointer hover:bg-[#d4d7d5] transition-colors">
-                <img className="w-[1rem]" src={sharing} alt="sharing" />
-              </div>
+             <SocialIcons contactData = {contactData}/>
             </div>
           </div>
 

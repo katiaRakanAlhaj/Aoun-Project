@@ -2,6 +2,7 @@ import singleBlogImage from "../../../assets/images/singleBlogImage.png";
 import blog1 from "../../../assets/images/blog1.png";
 import blog2 from "../../../assets/images/blog2.png";
 import blog3 from "../../../assets/images/blog3.png";
+import i18next from "i18next";
 const SingleBlogGrid = () => {
   const lastBlog = [
     {
@@ -67,7 +68,7 @@ const SingleBlogGrid = () => {
       </div>
       {/* second column */}
       <div className="lg:col-span-4 col-span-1">
-        <h1 className="text-[#333333] font-bold text-[1.2rem]">آخر المدونات</h1>
+        <h1 className="text-[#333333] font-bold text-[1.2rem]">{i18next.t("blog.last_news")}</h1>
         <div className="w-full h-[0.3rem] mt-2 bg-primary rounded-full"></div>
         {lastBlog?.map((lastBlog) => (
           <div className="mt-[2rem]">

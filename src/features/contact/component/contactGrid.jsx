@@ -4,7 +4,7 @@ import email from "../../../assets/images/email.svg";
 import phone from "../../../assets/images/phone.svg";
 import location from "../../../assets/images/location.svg";
 
-const ContactGrid = () => {
+const ContactGrid = ({ contactData, homePageData }) => {
   return (
     <div className="bg-white w-full h-auto md:py-[4rem] py-[2rem]">
       <div className="container3 mx-auto">
@@ -41,37 +41,57 @@ const ContactGrid = () => {
               />
               <button className="w-full h-[5rem] bg-primary rounded-md flex gap-x-2 items-center justify-center text-lg font-bold text-white cursor-pointer">
                 <p>{i18next.t("ContactGrid.send")}</p>
-                <img className="w-[1.5rem] h-[1.5rem]" src={send} alt="send" />
+                <img
+                  className={`w-[1.5rem] h-[1.5rem] ${i18next.language == "ar" ? "" : "rotate-[180deg]"}`}
+                  src={send}
+                  alt="send"
+                />
               </button>
             </form>
           </div>
-          
+
           {/* second column */}
           <div className="flex flex-col space-y-[2rem]">
             <div className="grid md:grid-cols-2 grid-cols-1 gap-y-[2rem] gap-x-[2rem]">
               <div className="w-full h-[14rem] bg-[#E9EFF0] rounded-md p-[2rem] flex flex-col space-y-[1.5rem]">
                 <div className="w-[3.5rem] h-[3.5rem] flex justify-center items-center bg-primary rounded-md">
-                  <img src={email} className="w-[1.5rem] h-[1.5rem]" alt="email" />
+                  <img
+                    src={email}
+                    className="w-[1.5rem] h-[1.5rem]"
+                    alt="email"
+                  />
                 </div>
                 <h1 className="font-bold text-dark md:text-2xl text-xl">
                   {i18next.t("ContactGrid.email_title")}
                 </h1>
-                <p className="text-primary text-lg">support@al-majan.om</p>
+                <p className="text-primary text-lg">
+                  {contactData?.data?.email}
+                </p>
               </div>
               <div className="w-full h-[14rem] bg-[#E9EFF0] rounded-md p-[2rem] flex flex-col space-y-[1.5rem]">
                 <div className="w-[3.5rem] h-[3.5rem] flex justify-center items-center bg-primary rounded-md">
-                  <img src={phone} className="w-[1.5rem] h-[1.5rem]" alt="phone" />
+                  <img
+                    src={phone}
+                    className="w-[1.5rem] h-[1.5rem]"
+                    alt="phone"
+                  />
                 </div>
                 <h1 className="font-bold text-dark md:text-2xl text-xl">
                   {i18next.t("ContactGrid.phone_title")}
                 </h1>
-                <p className="text-primary text-lg">+968 2440 0000</p>
+                <p className="text-primary text-lg">
+                  {contactData?.data?.phone_number}
+                </p>
               </div>
             </div>
-            
+
             <div className="w-full h-auto py-[2.5rem] bg-secondary rounded-md flex justify-center items-center">
               <div className="flex gap-x-[1rem] lg:px-0 px-[1rem]">
-                <img className="w-[2rem] h-[2rem] mt-4" src={location} alt="location" />
+                <img
+                  className="w-[2rem] h-[2rem] mt-4"
+                  src={location}
+                  alt="location"
+                />
                 <div>
                   <h1 className="font-bold text-white text-xl">
                     {i18next.t("ContactGrid.main_headquarters")}
@@ -82,15 +102,15 @@ const ContactGrid = () => {
                 </div>
               </div>
             </div>
-            
-            <div className="w-full h-[22rem] overflow-hidden rounded-2xl">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.8375!2d58.4059!3d23.5880!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8d4e8c8c8c8c8d%3A0x8c8c8c8c8c8c8c8c!2sMuscat%2C%20Oman!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
+
+            <div className="w-full h-[22rem] rounded-2xl">
+              <iframe
+                src={homePageData?.data?.location}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title={i18next.t("ContactGrid.location_map")}
               />

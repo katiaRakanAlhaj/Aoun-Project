@@ -5,7 +5,7 @@ import BannerPlatform from "../../../component/banner/bannerPlatform";
 const PlatformImage = ()=> {
     return(
         <div>
-            <BannerPlatform image = {imagePlatform} title ={i18next.t("platform.about_platform")}/>
+            <BannerPlatform image = {imagePlatform} title ={i18next.t("menu.about_the_platform")}/>
         </div>
     )
 }

@@ -145,5 +145,23 @@
         "phone_title": "Phone",
         "main_headquarters": "Main headquarters",
         "address": "Sultanate of Oman, Muscat, Ghala Industrial Area, Fourth Floor"
+    },
+    "blog": {
+        "blog": "blog",
+        "search_for_news": "Search for news",
+        "search": "Search",
+        "filter_and_sort": "Filter and sort",
+        "all": "All",
+        "read_more": "read more",
+        "apply_filter": "Apply Filter",
+        "reset": "Reset",
+        "see_more": "See More",
+        "loading": "loading...",
+        "filter_by": "Filter by",
+        "last_news": "Last News"
+    },
+    "contact_banner": {
+        "contact_us": "Contact Us",
+        "contact_description": "We are here to empower your industrial journey in the Sultanate of Oman. Our team of experts is always available to answer your technical and logistical inquiries and ensure the continuity of your production"
     }
 }
