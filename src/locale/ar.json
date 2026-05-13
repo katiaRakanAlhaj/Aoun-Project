@@ -162,6 +162,16 @@
     "contact_banner": {
         "contact_us": "تواصل معنا",
         "contact_description": "نحن هنا لتمكين رحلتكم الصناعية في سلطنة عمان. فريق الخبراء لدينا متاح دائماً للإجابة على استفساراتكم التقنية واللوجستية وضمان استمرارية إنتاجكم."
+    },
+    "contact_validation": {
+        "name_req": "الاسم الكامل مطلوب",
+        "email_req": "البريد الإلكتروني مطلوب",
+        "email_invalid": "البريد الإلكتروني غير صالح",
+        "subject_required": "الموضوع مطلوب",
+        "message_required": "الرسالة مطلوبة",
+        "sending": "ارسال...",
+        "message send successfully": "تم ارسال البيانات بنجاح",
+        "Error sending messag": "حدث خطأ بارسال البيانات"
     }
 
 }

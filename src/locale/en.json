@@ -163,5 +163,15 @@
     "contact_banner": {
         "contact_us": "Contact Us",
         "contact_description": "We are here to empower your industrial journey in the Sultanate of Oman. Our team of experts is always available to answer your technical and logistical inquiries and ensure the continuity of your production"
+    },
+    "contact_validation": {
+        "name_req": "Full name is required",
+        "email_req": "email is required",
+        "email_invalid": "email is invalid",
+        "subject_required": "subject is required",
+        "message_required": "message is required",
+        "sending": "sending...",
+        "message send successfully": "message send successfully",
+        "Error sending messag": "Error sending messag"
     }
 }
