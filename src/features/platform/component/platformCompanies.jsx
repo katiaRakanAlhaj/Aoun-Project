@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import thirdSectionImage from "../../../assets/images/thirdSectionImage.png";
 import menImage from "../../../assets/images/menImage.png";
 import rocket from "../../../assets/images/rocket.svg";
 import trueImage from "../../../assets/images/true.svg";
 import i18next from "i18next";
+
 const PlatformCompanies = () => {
+  const navigate = useNavigate();
+
   const companyOffers = [
     {
       desc: i18next.t(
@@ -13,6 +17,11 @@ const PlatformCompanies = () => {
     { desc: i18next.t("for_company.Smart inventory management tools") },
     { desc: i18next.t("for_company.Sales performance and growth reports") },
   ];
+
+  const handleRegisterClick = () => {
+    navigate("/", { state: { scrollToUpload: true } });
+  };
+
   return (
     <div className="w-full h-auto bg-[#191C1A] py-[6rem]">
       <div className="container1 mx-auto">
@@ -64,8 +73,8 @@ const PlatformCompanies = () => {
               </p>
             </p>
             <div className="flex flex-col space-y-[1.5rem] mt-[2rem]">
-              {companyOffers?.map((companyOffers) => (
-                <div className="flex gap-x-2 items-center">
+              {companyOffers?.map((companyOffers, index) => (
+                <div key={index} className="flex gap-x-2 items-center">
                   <img className="w-[1.5rem]" src={trueImage} />
                   <p className="text-[#FBF9F4] text-lg">
                     {companyOffers?.desc}
@@ -73,7 +82,10 @@ const PlatformCompanies = () => {
                 </div>
               ))}
             </div>
-            <button className="h-[4rem] w-[15rem] bg-[#009444] mt-[2.5rem] rounded-md font-bold text-white text-lg cursor-pointer">
+            <button 
+              onClick={handleRegisterClick}
+              className="h-[4rem] w-[15rem] bg-[#009444] mt-[2.5rem] rounded-md font-bold text-white text-lg cursor-pointer"
+            >
               {i18next.t("for_company.register_company")}
             </button>
           </div>
@@ -82,4 +94,5 @@ const PlatformCompanies = () => {
     </div>
   );
 };
+
 export default PlatformCompanies;

@@ -1,8 +1,33 @@
 import i18next from "i18next";
+import { useNavigate, useLocation } from "react-router-dom";
 import mainImage from "../../../assets/images/mainImage.png";
 import settings from "../../../assets/images/settings.svg";
 
 const MainSection = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get current language from URL
+  const getCurrentLang = () => {
+    const match = location.pathname.match(/^\/(en|ar)/);
+    return match ? match[1] : "ar";
+  };
+
+  const currentLang = getCurrentLang();
+
+  // Function to generate path with language
+  const getLocalizedPath = (path) => {
+    return `/${currentLang}/${path}`;
+  };
+
+  const handleDiscoverServices = () => {
+    navigate(getLocalizedPath("Services"));
+  };
+
+  const handleDiscoverProducts = () => {
+    navigate(getLocalizedPath("Products"));
+  };
+
   return (
     <div className="mt-[4rem] lg:mt-[8rem] container mx-auto pb-[3rem] md:pb-[7rem] px-4 md:px-0">
       <div className="grid lg:grid-cols-2 gap-[2rem]">
@@ -41,10 +66,16 @@ const MainSection = () => {
           </p>
 
           <div className="mt-[2rem] md:mt-[3rem] flex flex-col sm:flex-row gap-y-3 sm:gap-y-0 gap-x-[1rem] justify-center lg:justify-start">
-            <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] bg-primary cursor-pointer shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-white hover:bg-primary/90 transition-colors">
+            <button 
+              onClick={handleDiscoverServices}
+              className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] bg-primary cursor-pointer shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-white hover:bg-primary/90 transition-colors"
+            >
               {i18next.t("home.discover_services")}
             </button>
-            <button className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-dark hover:bg-[#ccd0d4] transition-colors">
+            <button 
+              onClick={handleDiscoverProducts}
+              className="w-full sm:w-[14rem] h-[3.5rem] md:h-[4rem] cursor-pointer bg-[#DDE0E4] shadow-lg text-[1rem] md:text-[1.2rem] font-bold rounded-md text-dark hover:bg-[#ccd0d4] transition-colors"
+            >
               {i18next.t("home.discover_products")}
             </button>
           </div>

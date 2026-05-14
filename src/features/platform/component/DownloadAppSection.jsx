@@ -6,7 +6,14 @@ import MainSection from "../../home/component/mainSection";
 import supplierImage from "../../../assets/images/supplierImage.png";
 import upload from "../../../assets/images/upload.svg";
 import i18next from "i18next";
+import { useNavigate } from "react-router-dom";
 const DownloadAppSection = () => {
+  const navigate = useNavigate();
+
+  const handleDownloadClick = () => {
+    navigate("/", { state: { scrollToUpload: true } });
+  };
+
   return (
     <div className="bg-[#FBF9F4]">
       <div className="container1 mx-auto lg:py-[7rem] py-[3rem]">
@@ -48,7 +55,10 @@ const DownloadAppSection = () => {
                     )}
                   />
                 </div>
-                <button className="w-full h-[4rem] rounded-md gap-x-4 bg-secondary mt-[3rem] cursor-pointer flex justify-center items-center">
+                <button
+                  onClick={handleDownloadClick}
+                  className="w-full h-[4rem] rounded-md gap-x-4 bg-secondary mt-[3rem] cursor-pointer flex justify-center items-center"
+                >
                   <img src={upload} className="w-[1.2rem]" />
                   <p className="font-bold text-white text-lg">
                     {" "}
