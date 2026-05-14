@@ -7,6 +7,7 @@ import DOMPurify from "dompurify";
 import { useParams } from "react-router-dom";
 import { useFetchSingleNew } from "../hook/useFetchSingleNew";
 import { useFetchNews } from "../../blog/hook/useFetchNews";
+import Loader from "../../../component/loader/loader";
 
 const SingleBlogGrid = () => {
   
@@ -21,7 +22,11 @@ const SingleBlogGrid = () => {
     isLoading: newsDataLoading,
     error: newsDataError,
   } = useFetchNews();
-
+if(singleNewDataLoading || newsDataLoading){
+  return(
+    <Loader/>
+  )
+}
   // Format date function
   const formatDate = (dateString) => {
     if (!dateString) return "";
