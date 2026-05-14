@@ -158,7 +158,10 @@
         "see_more": "See More",
         "loading": "loading...",
         "filter_by": "Filter by",
-        "last_news": "Last News"
+        "last_news": "Last News",
+        "blog_description": "This section provides the latest economic news in the Sultanate of Oman, including sustainable fuel agreements, oil prices, and government treasury bills. It also highlights entrepreneurship events and exhibitions that support the investment environment and industrial development.",
+        "no_results": "No news found",
+        "loading_news": "Loading News..."
     },
     "contact_banner": {
         "contact_us": "Contact Us",

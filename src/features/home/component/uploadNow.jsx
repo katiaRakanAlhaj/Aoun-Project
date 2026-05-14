@@ -3,9 +3,26 @@ import mobile from "../../../assets/images/mobile.svg";
 import googlePlay from "../../../assets/images/google_play.svg";
 import i18next from "i18next";
 import { ButtonUpload } from "../../../ui/buttonUpload";
-const UploadNow = () => {
+
+const UploadNow = ({ homePageData }) => {
+  // Get links from API data
+  const appStoreLink = homePageData?.data?.app_store_link || "#";
+  const googlePlayLink = homePageData?.data?.google_play_link || "#";
+
+  const handleAppStoreClick = () => {
+    if (appStoreLink !== "#") {
+      window.open(appStoreLink, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleGooglePlayClick = () => {
+    if (googlePlayLink !== "#") {
+      window.open(googlePlayLink, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
-    <div className="w-full lg:h-[68rem] py-[6rem] mb-[2rem]">
+    <div  className="w-full lg:h-[68rem] py-[6rem] mb-[2rem]">
       <div className="container1 mx-auto">
         <div className="w-full lg:h-[58rem] lg:py-[7rem] py-[3rem] bg-primary lg:rounded-[4rem]">
           <div className="container2 mx-auto">
@@ -21,16 +38,20 @@ const UploadNow = () => {
                     {i18next.t("home.supporting_the_national_economy")}
                   </p>
                   <div className="md:flex md:gap-x-[1.5rem] lg:mt-[3rem]">
-                    <ButtonUpload
-                      title={i18next.t("available_on")}
-                      image={mobile}
-                      description={"App Store"}
-                    />
-                    <ButtonUpload
-                      title={i18next.t("available_on")}
-                      image={googlePlay}
-                      description={"Google Play"}
-                    />
+                    <div onClick={handleAppStoreClick}>
+                      <ButtonUpload
+                        title={i18next.t("available_on")}
+                        image={mobile}
+                        description={"App Store"}
+                      />
+                    </div>
+                    <div onClick={handleGooglePlayClick}>
+                      <ButtonUpload
+                        title={i18next.t("available_on")}
+                        image={googlePlay}
+                        description={"Google Play"}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -38,6 +59,7 @@ const UploadNow = () => {
                 <img
                   className="lg:h-[45rem] lg:mt-0 mt-[2rem] object-contain w-full"
                   src={uploadApp}
+                  alt="App download illustration"
                 />
               </div>
             </div>
@@ -47,4 +69,5 @@ const UploadNow = () => {
     </div>
   );
 };
+
 export default UploadNow;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import DOMPurify from "dompurify";
@@ -6,116 +6,162 @@ import download from "../../../assets/images/download.svg";
 import i18next from "i18next";
 import { useFetchCategories } from "../hook/useFetchCategories";
 import { useFetchNews } from "../hook/useFetchNews";
+import noResult from "../../../assets/images/no_result.svg";
 
 const BlogGrid = () => {
-  const {
-    data: newsData,
-    isLoading: newsDataLoading,
-    error: newsDataError,
-  } = useFetchNews();
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [appliedCategory, setAppliedCategory] = useState("all");
+  const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [oldItemsCount, setOldItemsCount] = useState(0);
+
   const {
     data: categoriesData,
     isLoading: categoriesDataLoading,
     error: categoriesDataError,
   } = useFetchCategories();
-  
+
+  // Find category ID based on selected category name
+  useEffect(() => {
+    if (appliedCategory === "all") {
+      setSelectedCategoryId(null);
+    } else if (categoriesData?.data) {
+      const category = categoriesData.data.find(
+        (cat) => cat.category === appliedCategory,
+      );
+      setSelectedCategoryId(category?.id || null);
+    }
+  }, [appliedCategory, categoriesData]);
+
+  // Build query params based on applied filters
+  const getQueryParams = () => {
+    const params = new URLSearchParams();
+    if (selectedCategoryId) {
+      params.append("category_id", selectedCategoryId);
+    }
+    if (appliedSearchTerm) {
+      params.append("search", appliedSearchTerm);
+    }
+    return params.toString();
+  };
+
+  const {
+    data: newsData,
+    isLoading: newsDataLoading,
+    error: newsDataError,
+    refetch,
+  } = useFetchNews(getQueryParams());
+
   const [visibleCount, setVisibleCount] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
   const [flash, setFlash] = useState(false);
   const [newImages, setNewImages] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
 
-  // Extract blog items from API data
   const blogItems = newsData?.data || [];
-  
-  // Filter blog items based on category and search
-  const filteredItems = blogItems.filter((item) => {
-    const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
-    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (item.content?.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
 
-  const visibleItems = filteredItems.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredItems.length;
+  const visibleItems = blogItems.slice(0, visibleCount);
+  const hasMore = visibleCount < blogItems.length;
 
-  // Function to clean HTML content and remove extra spaces
   const getCleanedContent = (html) => {
     if (!html) return "";
-    
-    // Step 1: Replace all HTML space entities
+
     let cleaned = html
-      .replace(/&nbsp;/gi, ' ')
-      .replace(/&emsp;/gi, ' ')
-      .replace(/&ensp;/gi, ' ')
-      .replace(/&thinsp;/gi, ' ')
-      .replace(/&zwnj;/gi, '')
-      .replace(/&zwj;/gi, '');
-    
-    // Step 2: Remove empty HTML elements
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&emsp;/gi, " ")
+      .replace(/&ensp;/gi, " ")
+      .replace(/&thinsp;/gi, " ")
+      .replace(/&zwnj;/gi, "")
+      .replace(/&zwj;/gi, "");
+
     cleaned = cleaned
-      .replace(/<p>\s*<\/p>/gi, '')
-      .replace(/<div>\s*<\/div>/gi, '')
-      .replace(/<span>\s*<\/span>/gi, '')
-      .replace(/<section>\s*<\/section>/gi, '')
-      .replace(/<article>\s*<\/article>/gi, '');
-    
-    // Step 3: Replace line breaks with spaces
+      .replace(/<p>\s*<\/p>/gi, "")
+      .replace(/<div>\s*<\/div>/gi, "")
+      .replace(/<span>\s*<\/span>/gi, "")
+      .replace(/<section>\s*<\/section>/gi, "")
+      .replace(/<article>\s*<\/article>/gi, "");
+
     cleaned = cleaned
-      .replace(/<br\s*\/?>\s*<br\s*\/?>/gi, ' ')
-      .replace(/<br\s*\/?>/gi, ' ')
-      .replace(/<\/(p|div|h1|h2|h3|h4|h5|h6)>/gi, ' ')
-      .replace(/<(p|div|h1|h2|h3|h4|h5|h6)(\s[^>]*)?>/gi, ' ');
-    
-    // Step 4: Remove any remaining HTML tags that might cause spacing
-    cleaned = cleaned.replace(/<[^>]*>/g, ' ');
-    
-    // Step 5: Collapse all multiple spaces and trim
-    cleaned = cleaned
-      .replace(/\s+/g, ' ')
-      .trim();
-    
-    // Step 6: Sanitize for security (though most HTML is already removed)
+      .replace(/<br\s*\/?>\s*<br\s*\/?>/gi, " ")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<\/(p|div|h1|h2|h3|h4|h5|h6)>/gi, " ")
+      .replace(/<(p|div|h1|h2|h3|h4|h5|h6)(\s[^>]*)?>/gi, " ");
+
+    cleaned = cleaned.replace(/<[^>]*>/g, " ");
+    cleaned = cleaned.replace(/\s+/g, " ").trim();
+
     return DOMPurify.sanitize(cleaned);
+  };
+
+  const animateNewItems = (oldCount, newCount) => {
+    const newIndices = [];
+    for (let i = oldCount; i < newCount && i < blogItems.length; i++) {
+      newIndices.push(i);
+    }
+    setNewImages(newIndices);
+    setFlash(true);
+
+    setTimeout(() => {
+      setFlash(false);
+      setTimeout(() => {
+        setNewImages([]);
+      }, 500);
+    }, 500);
   };
 
   const loadMore = () => {
     setIsLoading(true);
-    setFlash(true);
-
     const currentCount = visibleCount;
-    const newIndices = [];
-    for (
-      let i = currentCount;
-      i < currentCount + 6 && i < filteredItems.length;
-      i++
-    ) {
-      newIndices.push(i);
-    }
-    setNewImages(newIndices);
+    const newCount = currentCount + 6;
 
     setTimeout(() => {
-      setVisibleCount((prevCount) => prevCount + 6);
+      setVisibleCount(newCount);
+      animateNewItems(currentCount, newCount);
       setIsLoading(false);
-
-      setTimeout(() => {
-        setFlash(false);
-        setTimeout(() => {
-          setNewImages([]);
-        }, 500);
-      }, 500);
     }, 800);
   };
 
   const resetFilters = () => {
     setSelectedCategory("all");
     setSearchTerm("");
+    setAppliedCategory("all");
+    setAppliedSearchTerm("");
     setVisibleCount(9);
+    setIsFiltering(true);
+
+    // Store current count for animation
+    const oldCount = visibleCount;
+
+    // Refetch with empty filters
+    refetch().then(() => {
+      setTimeout(() => {
+        animateNewItems(0, Math.min(9, blogItems.length));
+        setIsFiltering(false);
+      }, 100);
+    });
   };
 
   const applyFilter = () => {
+    setAppliedCategory(selectedCategory);
+    setAppliedSearchTerm(searchTerm);
     setVisibleCount(9);
+    setIsFiltering(true);
+
+    // Store current count for animation
+    const oldCount = visibleCount;
+
+    // Refetch with new filters
+    refetch().then(() => {
+      setTimeout(() => {
+        animateNewItems(0, Math.min(9, blogItems.length));
+        setIsFiltering(false);
+      }, 100);
+    });
+  };
+
+  const handleSearchClick = () => {
+    applyFilter();
   };
 
   const imageVariants = {
@@ -131,23 +177,25 @@ const BlogGrid = () => {
     },
   };
 
-  // Loading state
   if (newsDataLoading || categoriesDataLoading) {
     return (
       <div className="container3 mx-auto mb-[4rem] flex justify-center items-center min-h-[400px]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-gray-600">{i18next.t("loading")}</p>
+          <div className="w-12 h-12 border-4 border-[#009444] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="mt-4 text-primary font-bold">
+            {i18next.t("blog.loading_news")}
+          </p>
         </div>
       </div>
     );
   }
 
-  // Error state
   if (newsDataError || categoriesDataError) {
     return (
       <div className="container3 mx-auto mb-[4rem] text-center py-10">
-        <p className="text-red-500">Error loading content. Please try again later.</p>
+        <p className="text-red-500">
+          Error loading content. Please try again later.
+        </p>
       </div>
     );
   }
@@ -155,13 +203,17 @@ const BlogGrid = () => {
   return (
     <div className="container3 mx-auto mb-[4rem]">
       <div className="grid lg:grid-cols-12 gap-y-[2rem] grid-cols-1 gap-x-[4rem] mt-[3rem]">
-        {/* first column - Filters */}
         <div className="lg:col-span-4 col-span-1">
           <div className="relative">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearchClick();
+                }
+              }}
               placeholder={i18next.t("blog.search_for_news")}
               className={`w-full px-4 h-[3rem] text-sm ${i18next.language == "ar" ? "pr-10" : "pl-10"} rounded-t-lg bg-white border border-[#E7E8E9] focus:outline-none text-[#697077]`}
             />
@@ -183,8 +235,8 @@ const BlogGrid = () => {
               </svg>
             </div>
             <button
-              onClick={applyFilter}
-              className={`absolute bottom-0  ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer`}
+              onClick={handleSearchClick}
+              className={`absolute bottom-0 ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer`}
             >
               {i18next.t("blog.search")}
             </button>
@@ -204,7 +256,6 @@ const BlogGrid = () => {
               <button
                 onClick={() => {
                   setSelectedCategory("all");
-                  setVisibleCount(9);
                 }}
                 className={`w-auto h-[2.2rem] px-[1.5rem] rounded-full flex justify-center items-center text-[1.1rem] cursor-pointer ${
                   selectedCategory === "all"
@@ -219,7 +270,6 @@ const BlogGrid = () => {
                   <button
                     onClick={() => {
                       setSelectedCategory(category?.category);
-                      setVisibleCount(9);
                     }}
                     className={`w-auto h-[2.2rem] px-[1.5rem] cursor-pointer rounded-full flex justify-center items-center text-[1.1rem] ${
                       selectedCategory === category?.category
@@ -232,7 +282,7 @@ const BlogGrid = () => {
                 </div>
               ))}
             </div>
-            
+
             <button
               onClick={applyFilter}
               className="h-[3rem] w-full bg-primary rounded-lg mt-[1.5rem] font-bold text-white text-lg cursor-pointer"
@@ -248,11 +298,17 @@ const BlogGrid = () => {
           </div>
         </div>
 
-        {/* second column - Blog Grid */}
         <div className="lg:col-span-8 cols-span-1 lg:mr-[-1.5rem]">
-          {filteredItems.length === 0 ? (
-            <div className="text-center py-10">
-              <p className="text-gray-500 text-lg">No news found</p>
+          {blogItems.length === 0 ? (
+            <div className="flex flex-col justify-center items-center py-10">
+              <img
+                src={noResult}
+                alt="No results found"
+                className="w-64 h-64 object-contain mb-6"
+              />
+              <p className="text-primary font-bold text-xl text-center">
+                {i18next.t("blog.no_results")}
+              </p>
             </div>
           ) : (
             <>
@@ -260,7 +316,7 @@ const BlogGrid = () => {
                 <AnimatePresence mode="wait">
                   {visibleItems?.map((blogItem, index) => {
                     const isNewImage = newImages.includes(index);
-                    
+
                     return (
                       <motion.div
                         key={blogItem.id}
@@ -275,17 +331,18 @@ const BlogGrid = () => {
                           className="w-full h-[12rem] object-cover"
                           alt={blogItem?.title}
                           onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/400x200?text=No+Image";
+                            e.target.src =
+                              "https://via.placeholder.com/400x200?text=No+Image";
                           }}
                         />
                         <div className="px-[1rem]">
                           <h1 className="text-[#333333] font-bold text-md mt-3 line-clamp-2">
                             {blogItem?.title}
                           </h1>
-                          <p 
+                          <p
                             dangerouslySetInnerHTML={{
-                              __html: getCleanedContent(blogItem?.content)
-                            }} 
+                              __html: getCleanedContent(blogItem?.content),
+                            }}
                             className="text-[#959595] mt-[1rem] text-sm line-clamp-3 leading-relaxed"
                           />
                         </div>
@@ -303,7 +360,6 @@ const BlogGrid = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Show More Button */}
               {hasMore && (
                 <div className="flex justify-center items-center mt-[3rem]">
                   <button
@@ -314,8 +370,8 @@ const BlogGrid = () => {
                     {isLoading ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <p className="text-white font-bold text-lg">
-                          {i18next.t("loading")}
+                        <p className="text-pimary font-bold font-bold text-lg">
+                          {i18next.t("blog.loading_news")}
                         </p>
                       </>
                     ) : (

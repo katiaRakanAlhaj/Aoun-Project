@@ -1,3 +1,5 @@
+import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
+import { useFetchHomePage } from "../features/home/hook/useFetchHomePage";
 import GovernmentAgencies from "../features/products/component/GovernmentAgencies";
 import JoinOurIndustrialCommunity from "../features/products/component/JoinOurIndustrialCommunity";
 import ProductImage from "../features/products/component/productImage";
@@ -8,12 +10,14 @@ import { useFetchProducts } from "../features/products/hook/useFetchProducts";
 const Products = ()=> {
     const {data:productsData , isLoading:productsDataLoading,error:productsDataError} = useFetchProducts();
     const {data:partnerData , isLoading:partnerDataLoading , error:partnerDataError} = useFetchPartners();
+    const {data:homePageData , isLoading:homePageDataLoading , error:homePageDataError} = useFetchHomePage();
     return(
         <div>
+            <ScrollToTop/>
             <ProductImage/>
             <ProductsGrid productsData = {productsData}/>
             <JoinOurIndustrialCommunity partnerData = {partnerData}/>
-            <GovernmentAgencies/>
+            <GovernmentAgencies homePageData = {homePageData}/>
         </div>
     )
 }

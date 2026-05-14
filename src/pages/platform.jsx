@@ -1,3 +1,4 @@
+import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
 import BuildFuture from "../features/platform/component/buildFuture";
 import DownloadAppSection from "../features/platform/component/DownloadAppSection";
 import PlatformCompanies from "../features/platform/component/platformCompanies";
@@ -7,6 +8,7 @@ import PlatformWorking from "../features/platform/component/platformWorking";
 const Platform = () => {
   return (
     <div>
+      <ScrollToTop/>
       <PlatformImage />
       <PlatformWorking />
       <PlatformCompanies />

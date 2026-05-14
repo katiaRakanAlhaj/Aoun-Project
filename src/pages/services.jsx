@@ -1,3 +1,5 @@
+import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
+import { useFetchHomePage } from "../features/home/hook/useFetchHomePage";
 import AppDownloadFooter from "../features/services/component/App_Download_Footer";
 import ForIndustrialCompanies from "../features/services/component/for_industrial_companies";
 import JourneyOfSuccess from "../features/services/component/journey_of_success";
@@ -8,8 +10,10 @@ import Statistics from "../features/services/component/Statistics";
 import TechnologySolutions from "../features/services/component/technology_solutions";
 
 const Services = ()=> {
+    const {data:homePageData , isLoading:homePageDataLoading , error:homePageDataError} = useFetchHomePage();
     return(
         <div>
+            <ScrollToTop/>
             <ServiceImage/>
             <OurStoryService/>
             <JourneyOfSuccess/>
@@ -17,7 +21,7 @@ const Services = ()=> {
             <ForIndustrialCompanies/>
             <PartnerInConstruction/>
             <Statistics/>
-            <AppDownloadFooter/>
+            <AppDownloadFooter homePageData = {homePageData}/>
         </div>
     )
 }
