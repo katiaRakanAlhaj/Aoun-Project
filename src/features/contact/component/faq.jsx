@@ -24,7 +24,7 @@ const Faq = () => {
           {i18next.t("FAQ.faq_title")}
         </h1>
         <div className="flex gap-x-[2rem] items-center">
-          <p className="text-[#333333] text-nowrap font-bold mt-3 md:text-[2.5rem] text-[1.7rem]">
+          <p className="text-[#333333] text-nowrap font-bold mt-3 md:text-[2.5rem] text-[1.4rem]">
             {i18next.t("FAQ.faq_subtitle")}{" "}
           </p>
           <div className="w-full h-[0.1rem] bg-[#BBE5C64D]"></div>
@@ -53,7 +53,7 @@ const Faq = () => {
                       onClick={() =>
                         toggleAccordion(categoryIndex, questionIndex)
                       }
-                      className="w-full flex justify-between items-center p-6 text-right bg-white hover:bg-gray-50 transition-all cursor-pointer"
+                      className={`w-full flex justify-between items-center p-6 ${i18next.language == "ar" ? "text-right" : "text-left"} bg-white hover:bg-gray-50 transition-all cursor-pointer`}
                     >
                       <span className="text-dark md:text-[1.4rem] text-lg font-bold">
                         {item.question}

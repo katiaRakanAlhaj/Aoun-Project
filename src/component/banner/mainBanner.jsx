@@ -4,7 +4,7 @@ import bannerPlatform from "../../assets/images/bannerPlatform.png";
 const MainBanner = ({ image, title, height }) => {
   return (
     <div className="relative">
-      <div className={`w-full ${height ? height : "lg:h-[24rem] h-[18rem]"}`}>
+      <div className={`w-full ${height ? height : "lg:h-[24rem] h-[19rem]"}`}>
         {/* Background Image */}
         <div
           className="absolute w-full h-full bg-cover bg-center -z-10 transition-all duration-700"

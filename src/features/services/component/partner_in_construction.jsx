@@ -9,7 +9,7 @@ const PartnerInConstruction = () => {
           <div className="w-[6rem] h-[6rem] bg-[#0B6C4B1A] rounded-xl flex justify-center items-center">
             <img className="w-[2.5rem] h-[2.5rem] object-contain" src={hand} />
           </div>
-          <p className="text-[#333333] text-[2rem] mt-[1rem] font-bold">
+          <p className="text-[#333333] md:text-[2rem] text-[1.7rem] mt-[1rem] font-bold">
             {i18next.t("PartnerInConstruction.be_a_partner")}{" "}
           </p>
           <p className="text-xl text-[#525252] mt-[1rem]">

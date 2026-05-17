@@ -27,7 +27,7 @@ const About = () => {
               {i18next.t("home.about_us")}
             </h1>
             <SubTitle subTitle={i18next.t("home.Awn_app")} />
-            <p className="text-[1.4rem] text-[#333333] mt-[1.5rem] leading-relaxed whitespace-pre-line">
+            <p className="md:text-[1.4rem] text-[1.2rem] text-[#333333] mt-[1.5rem] leading-relaxed whitespace-pre-line">
               {aboutUsSection?.description}
             </p>
           </div>

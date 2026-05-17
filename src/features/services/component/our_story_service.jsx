@@ -11,7 +11,7 @@ const OurStoryService = () => {
           <p className="text-lg mt-[1rem] text-dark">
             {i18next.t("services_description.Omani_innovation")}{" "}
           </p>
-          <div className="w-full px-[1rem] flex  items-center h-[5rem] bg-white rounded-[0.8rem] mt-[1.5rem]  relative">
+          <div className="w-full px-[1rem] flex  items-center h-auto py-[2rem] bg-white rounded-[0.8rem] mt-[1.5rem]  relative">
             <div
               className={`absolute h-full w-[0.2rem] bg-[#0B6C4B] ${i18next.language == "ar" ? "right-0 rounded-tr-[0.8rem] rounded-br-[0.8rem]" : "left-0 rounded-tl-[0.8rem] rounded-bl-[0.8rem]"} top-0 bottom-0 flex`}
             ></div>

@@ -37,7 +37,7 @@ const PlatformWorking = () => {
   // Function to get height class based on index (0-based)
   const getHeightClass = (index) => {
     // Even index (0,2) -> h-[24rem], Odd index (1,3) -> h-[20rem]
-    return index % 2 === 0 ? "h-[22rem]" : "h-[20rem] mt-[2.2rem]";
+    return index % 2 === 0 ? "lg:h-[22rem]" : "lg:h-[20rem] lg:mt-[2.2rem]";
   };
 
   return (
@@ -49,7 +49,7 @@ const PlatformWorking = () => {
         </div>
       </div>
       <div className="container1 mx-auto">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-[3rem] gap-x-[2rem]">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-[3rem] gap-[2rem]">
           {steps?.map((step, index) => (
             <div
               key={index}

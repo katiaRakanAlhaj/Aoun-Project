@@ -76,7 +76,7 @@ const Footer = () => {
   return (
     <div
       style={{ boxShadow: "0px 8px 44px 0px #00000040" }}
-      className="w-full h-auto md:h-[25rem] bg-white py-[2rem] md:py-[4rem]"
+      className="w-full h-auto lg:h-[25rem] bg-white py-[2rem] md:py-[4rem]"
     >
       <div className="container1 mx-auto px-4 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0">
