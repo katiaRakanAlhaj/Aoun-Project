@@ -1,3 +1,4 @@
+import MetaHelmet from "../component/meta/metaHelemt";
 import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
 import BuildFuture from "../features/platform/component/buildFuture";
 import DownloadAppSection from "../features/platform/component/DownloadAppSection";
@@ -8,7 +9,8 @@ import PlatformWorking from "../features/platform/component/platformWorking";
 const Platform = () => {
   return (
     <div>
-      <ScrollToTop/>
+      <MetaHelmet title={"Platform"} description={"Platform"} />
+      <ScrollToTop />
       <PlatformImage />
       <PlatformWorking />
       <PlatformCompanies />

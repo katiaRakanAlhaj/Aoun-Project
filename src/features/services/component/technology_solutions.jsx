@@ -6,7 +6,9 @@ import solution4 from "../../../assets/images/solution4.svg";
 import solution5 from "../../../assets/images/solution7.svg";
 import solution6 from "../../../assets/images/solution8.svg";
 import i18next from "i18next";
+import { useFetchServices } from "../hook/useFetchServices";
 const TechnologySolutions = () => {
+  const {data:servicesData} = useFetchServices();
   const solutionItems = [
     {
       image: solution1,
@@ -39,25 +41,25 @@ const TechnologySolutions = () => {
       <div className="container2 mx-auto">
         <SecondTitleStyle title={i18next.t("Technical_solutions.technical_solutions")} />
         <div className="grid md:grid-cols-2 gap-[1rem] mt-[2rem]">
-          {solutionItems?.map((item, index) => (
+          {servicesData?.data?.technical_solutions.map((item, index) => (
             <div
               key={index}
               className={`w-full h-[8rem] relative rounded-2xl ${
-                index === solutionItems.length - 1 ? "bg-[#0066B3]" : "bg-white"
+                index === solutionItems.length - 1 ? "bg-white" : "bg-white"
               }`}
             >
               <p
                 className={`absolute ${i18next.language == "ar"?'right-[1.5rem]':'left-[1.5rem]'} text-xl bottom-[1.5rem] ${
                   index === solutionItems.length - 1
-                    ? "text-white"
+                    ? "text-[#1B1C19]"
                     : "text-[#1B1C19]"
                 }`}
               >
-                {item.desc}
+                {item.name}
               </p>
               <img
                 className={`absolute ${i18next.language == "ar" ? "left-[1.5rem]" : "right-[1.5rem]"} top-[1.5rem] w-[2rem] h-[2rem] object-contain`}
-                src={item.image}
+                src={item.icon}
                 alt={item.desc}
               />
             </div>

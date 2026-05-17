@@ -1,4 +1,5 @@
 import Loader from "../component/loader/loader";
+import MetaHelmet from "../component/meta/metaHelemt";
 import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
 import { useFetchHomePage } from "../features/home/hook/useFetchHomePage";
 import GovernmentAgencies from "../features/products/component/GovernmentAgencies";
@@ -30,6 +31,7 @@ const Products = () => {
   return (
     <div>
       <ScrollToTop />
+      <MetaHelmet title={"Products"} description={"Products"} />
       <ProductImage />
       <ProductsGrid productsData={productsData} />
       <JoinOurIndustrialCommunity partnerData={partnerData} />

@@ -28,7 +28,7 @@ const JoinOurIndustrialCommunity = ({ partnerData }) => {
                   <div key={imageIndex} className="flex justify-center">
                     <img
                       src={image}
-                      className="w-[5rem] h-[5rem] object-cover opacity-[60%]"
+                      className="w-[5rem] h-[5rem] object-cover"
                     />
                   </div>
                 ))}

@@ -6,9 +6,14 @@ import Achievements from "../features/home/component/Achievements";
 import MainSection from "../features/home/component/mainSection";
 import UploadNow from "../features/home/component/uploadNow";
 import { useFetchHomePage } from "../features/home/hook/useFetchHomePage";
+import MetaHelmet from "../component/meta/metaHelemt";
 
 const Home = () => {
-  const { data: homePageData, isLoading: homePageDataLoading, error: homePageDataError } = useFetchHomePage();
+  const {
+    data: homePageData,
+    isLoading: homePageDataLoading,
+    error: homePageDataError,
+  } = useFetchHomePage();
   const location = useLocation();
   const uploadSectionRef = useRef(null);
 
@@ -22,6 +27,7 @@ const Home = () => {
 
   return (
     <div>
+      <MetaHelmet title={"Home"} description={"Home"} />
       <ScrollToTop />
       <MainSection />
       <About />

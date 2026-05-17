@@ -10,11 +10,10 @@ import { useFetchNews } from "../../blog/hook/useFetchNews";
 import Loader from "../../../component/loader/loader";
 
 const SingleBlogGrid = () => {
-  
   const { id } = useParams();
   const {
     data: singleNewData,
-    loading: singleNewDataLoading,
+    isLoading: singleNewDataLoading,
     error: singleNewDataError,
   } = useFetchSingleNew(id);
   const {
@@ -22,48 +21,21 @@ const SingleBlogGrid = () => {
     isLoading: newsDataLoading,
     error: newsDataError,
   } = useFetchNews();
-if(singleNewDataLoading || newsDataLoading){
-  return(
-    <Loader/>
-  )
-}
+  if (singleNewDataLoading || newsDataLoading) {
+    return <Loader />;
+  }
   // Format date function
   const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toLocaleDateString('ar-EG', { 
-      year: 'numeric', 
-      month: 'long'
+    return date.toLocaleDateString("ar-EG", {
+      year: "numeric",
+      month: "long",
     });
   };
 
   // Get last three items from newsData
   const lastThreeNews = newsData?.data?.slice(-3) || [];
-
-  const lastBlog = [
-    {
-      image: blog1,
-      title: "لوريم ابسيوم",
-      date: "سبتمبر ٢٠٢٣",
-      description:
-        "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات ",
-    },
-    {
-      image: blog2,
-      title: "لوريم ابسيوم",
-      date: "سبتمبر ٢٠٢٣",
-      description:
-        "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات ",
-    },
-    {
-      image: blog3,
-      title: "لوريم ابسيوم",
-      date: "سبتمبر ٢٠٢٣",
-      description:
-        "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات ",
-    },
-  ];
-
   return (
     <div className="grid lg:grid-cols-12 gap-y-[2rem] grid-cols-1 mt-[2rem] gap-x-[3rem] lg:px-0 px-[1rem]">
       {/* first column */}
@@ -100,7 +72,7 @@ if(singleNewDataLoading || newsDataLoading){
           أيا كوممودو كونسيكيوات
         </p> */}
       </div>
-      
+
       {/* second column */}
       <div className="lg:col-span-4 col-span-1">
         <h1 className="text-[#333333] font-bold text-[1.2rem]">
@@ -123,8 +95,7 @@ if(singleNewDataLoading || newsDataLoading){
               </p>
             </div>
             <div
-                    style={{ backgroundColor: 'transparent' }}
-
+              style={{ backgroundColor: "transparent" }}
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(newsItem?.content),
               }}

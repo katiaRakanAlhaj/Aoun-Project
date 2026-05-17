@@ -14,8 +14,12 @@ const BlogGrid = () => {
   const [appliedCategory, setAppliedCategory] = useState("all");
   const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const [isFiltering, setIsFiltering] = useState(false);
-  const [oldItemsCount, setOldItemsCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allBlogItems, setAllBlogItems] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(9);
+  const [animatedItems, setAnimatedItems] = useState(new Set()); // Use Set for better performance
 
   const {
     data: categoriesData,
@@ -52,17 +56,76 @@ const BlogGrid = () => {
     isLoading: newsDataLoading,
     error: newsDataError,
     refetch,
-  } = useFetchNews(getQueryParams());
+  } = useFetchNews(getQueryParams(), currentPage);
 
-  const [visibleCount, setVisibleCount] = useState(9);
-  const [isLoading, setIsLoading] = useState(false);
-  const [flash, setFlash] = useState(false);
-  const [newImages, setNewImages] = useState([]);
+  // Reset and fetch when filters change
+  useEffect(() => {
+    setAllBlogItems([]);
+    setCurrentPage(1);
+    setHasMore(true);
+    setVisibleCount(9);
+    setAnimatedItems(new Set()); // Reset animated items
+    refetch();
+  }, [appliedCategory, appliedSearchTerm]);
 
-  const blogItems = newsData?.data || [];
+  // Append new data when newsData changes and animate new items
+  useEffect(() => {
+    if (newsData?.data && newsData.data.length > 0) {
+      if (currentPage === 1) {
+        setAllBlogItems(newsData.data);
+        // Mark initial items for animation
+        const newAnimatedSet = new Set();
+        newsData.data.slice(0, 9).forEach(item => {
+          newAnimatedSet.add(item.id);
+        });
+        setAnimatedItems(newAnimatedSet);
+        
+        // Clear animation flags after animation completes
+        setTimeout(() => {
+          setAnimatedItems(new Set());
+        }, 800);
+      } else {
+        // This is loading more pages - animate the new items
+        setAllBlogItems(prev => {
+          const updated = [...prev, ...newsData.data];
+          // Mark newly added items for animation
+          const newAnimatedSet = new Set(animatedItems);
+          newsData.data.forEach(item => {
+            newAnimatedSet.add(item.id);
+          });
+          setAnimatedItems(newAnimatedSet);
+          
+          // Remove animation flag after animation completes
+          setTimeout(() => {
+            setAnimatedItems(prevSet => {
+              const newSet = new Set(prevSet);
+              newsData.data.forEach(item => {
+                newSet.delete(item.id);
+              });
+              return newSet;
+            });
+          }, 800);
+          
+          return updated;
+        });
+      }
+      
+      // Check if there are more pages
+      const lastPage = newsData?.meta?.last_page || 1;
+      setHasMore(currentPage < lastPage);
+      
+      // Reset loading state
+      setIsLoadingMore(false);
+    } else if (newsData?.data && newsData.data.length === 0 && currentPage === 1) {
+      setAllBlogItems([]);
+      setHasMore(false);
+      setIsLoadingMore(false);
+    }
+  }, [newsData, currentPage]);
 
+  const blogItems = allBlogItems;
   const visibleItems = blogItems.slice(0, visibleCount);
-  const hasMore = visibleCount < blogItems.length;
+  const hasMoreItems = visibleCount < blogItems.length;
 
   const getCleanedContent = (html) => {
     if (!html) return "";
@@ -94,32 +157,42 @@ const BlogGrid = () => {
     return DOMPurify.sanitize(cleaned);
   };
 
-  const animateNewItems = (oldCount, newCount) => {
-    const newIndices = [];
-    for (let i = oldCount; i < newCount && i < blogItems.length; i++) {
-      newIndices.push(i);
-    }
-    setNewImages(newIndices);
-    setFlash(true);
-
-    setTimeout(() => {
-      setFlash(false);
-      setTimeout(() => {
-        setNewImages([]);
-      }, 500);
-    }, 500);
-  };
-
-  const loadMore = () => {
-    setIsLoading(true);
+  const loadMoreLocalItems = () => {
     const currentCount = visibleCount;
     const newCount = currentCount + 6;
-
+    setVisibleCount(newCount);
+    
+    // Animate newly visible items
+    const newItems = blogItems.slice(currentCount, newCount);
+    const newAnimatedSet = new Set(animatedItems);
+    newItems.forEach(item => {
+      newAnimatedSet.add(item.id);
+    });
+    setAnimatedItems(newAnimatedSet);
+    
+    // Remove animation flag after animation completes
     setTimeout(() => {
-      setVisibleCount(newCount);
-      animateNewItems(currentCount, newCount);
-      setIsLoading(false);
+      setAnimatedItems(prevSet => {
+        const newSet = new Set(prevSet);
+        newItems.forEach(item => {
+          newSet.delete(item.id);
+        });
+        return newSet;
+      });
     }, 800);
+  };
+
+  const loadMoreFromApi = () => {
+    setIsLoadingMore(true);
+    setCurrentPage(prev => prev + 1);
+  };
+
+  const handleLoadMore = () => {
+    if (hasMoreItems) {
+      loadMoreLocalItems();
+    } else if (hasMore && !newsDataLoading && !isLoadingMore) {
+      loadMoreFromApi();
+    }
   };
 
   const resetFilters = () => {
@@ -128,56 +201,60 @@ const BlogGrid = () => {
     setAppliedCategory("all");
     setAppliedSearchTerm("");
     setVisibleCount(9);
-    setIsFiltering(true);
-
-    // Store current count for animation
-    const oldCount = visibleCount;
-
-    // Refetch with empty filters
-    refetch().then(() => {
-      setTimeout(() => {
-        animateNewItems(0, Math.min(9, blogItems.length));
-        setIsFiltering(false);
-      }, 100);
-    });
+    setAllBlogItems([]);
+    setCurrentPage(1);
+    setHasMore(true);
+    setAnimatedItems(new Set());
   };
 
   const applyFilter = () => {
     setAppliedCategory(selectedCategory);
     setAppliedSearchTerm(searchTerm);
     setVisibleCount(9);
-    setIsFiltering(true);
-
-    // Store current count for animation
-    const oldCount = visibleCount;
-
-    // Refetch with new filters
-    refetch().then(() => {
-      setTimeout(() => {
-        animateNewItems(0, Math.min(9, blogItems.length));
-        setIsFiltering(false);
-      }, 100);
-    });
+    setAllBlogItems([]);
+    setCurrentPage(1);
+    setHasMore(true);
+    setAnimatedItems(new Set());
   };
 
   const handleSearchClick = () => {
     applyFilter();
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+  // Fade-in animation variants
+  const fadeInVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 30
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "tween",
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Scale and fade for images
+  const imageFadeVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.9
+    },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
   };
 
-  if (newsDataLoading || categoriesDataLoading) {
+  if ((newsDataLoading && currentPage === 1) || categoriesDataLoading) {
     return (
       <div className="container3 mx-auto mb-[4rem] flex justify-center items-center min-h-[400px]">
         <div className="text-center">
@@ -236,7 +313,7 @@ const BlogGrid = () => {
             </div>
             <button
               onClick={handleSearchClick}
-              className={`absolute bottom-0 ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer`}
+              className={`absolute bottom-0 ${i18next.language == "ar" ? "left-0 rounded-tl-lg" : "right-0 rounded-tr-lg"} top-0 h-full w-[6rem] bg-primary font-bold text-white text-md cursor-pointer transition-transform hover:scale-105`}
             >
               {i18next.t("blog.search")}
             </button>
@@ -257,10 +334,10 @@ const BlogGrid = () => {
                 onClick={() => {
                   setSelectedCategory("all");
                 }}
-                className={`w-auto h-[2.2rem] px-[1.5rem] rounded-full flex justify-center items-center text-[1.1rem] cursor-pointer ${
+                className={`w-auto h-[2.2rem] px-[1.5rem] rounded-full flex justify-center items-center text-[1.1rem] cursor-pointer transition-all duration-300 ${
                   selectedCategory === "all"
-                    ? "bg-[#C2DAFF80] text-secondary"
-                    : "bg-[#F0F0F0] text-[#525252]"
+                    ? "bg-[#C2DAFF80] text-secondary scale-105"
+                    : "bg-[#F0F0F0] text-[#525252] hover:bg-[#E0E0E0]"
                 }`}
               >
                 {i18next.t("blog.all")}
@@ -271,10 +348,10 @@ const BlogGrid = () => {
                     onClick={() => {
                       setSelectedCategory(category?.category);
                     }}
-                    className={`w-auto h-[2.2rem] px-[1.5rem] cursor-pointer rounded-full flex justify-center items-center text-[1.1rem] ${
+                    className={`w-auto h-[2.2rem] px-[1.5rem] cursor-pointer rounded-full flex justify-center items-center text-[1.1rem] transition-all duration-300 ${
                       selectedCategory === category?.category
-                        ? "bg-[#C2DAFF80] text-secondary"
-                        : "bg-[#F0F0F0] text-[#525252]"
+                        ? "bg-[#C2DAFF80] text-secondary scale-105"
+                        : "bg-[#F0F0F0] text-[#525252] hover:bg-[#E0E0E0]"
                     }`}
                   >
                     {category?.category}
@@ -285,13 +362,13 @@ const BlogGrid = () => {
 
             <button
               onClick={applyFilter}
-              className="h-[3rem] w-full bg-primary rounded-lg mt-[1.5rem] font-bold text-white text-lg cursor-pointer"
+              className="h-[3rem] w-full bg-primary rounded-lg mt-[1.5rem] font-bold text-white text-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               {i18next.t("blog.apply_filter")}
             </button>
             <button
               onClick={resetFilters}
-              className="text-[#5B1B1B] text-sm mt-[1rem] text-center cursor-pointer w-full"
+              className="text-[#5B1B1B] text-sm mt-[1rem] text-center cursor-pointer w-full transition-all duration-300 hover:underline"
             >
               {i18next.t("blog.reset")}
             </button>
@@ -299,8 +376,12 @@ const BlogGrid = () => {
         </div>
 
         <div className="lg:col-span-8 cols-span-1 lg:mr-[-1.5rem]">
-          {blogItems.length === 0 ? (
-            <div className="flex flex-col justify-center items-center py-10">
+          {blogItems.length === 0 && !newsDataLoading ? (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col justify-center items-center py-10"
+            >
               <img
                 src={noResult}
                 alt="No results found"
@@ -309,68 +390,105 @@ const BlogGrid = () => {
               <p className="text-primary font-bold text-xl text-center">
                 {i18next.t("blog.no_results")}
               </p>
-            </div>
+            </motion.div>
           ) : (
             <>
               <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[2rem]">
-                <AnimatePresence mode="wait">
-                  {visibleItems?.map((blogItem, index) => {
-                    const isNewImage = newImages.includes(index);
+                {visibleItems?.map((blogItem, index) => {
+                  const shouldAnimate = animatedItems.has(blogItem.id);
 
-                    return (
-                      <motion.div
-                        key={blogItem.id}
-                        initial={isNewImage ? "hidden" : false}
-                        animate={isNewImage ? "visible" : false}
-                        variants={imageVariants}
-                        style={{ boxShadow: "0px 0px 4px 0px #00000040" }}
-                        className="w-full bg-white h-[25rem] relative rounded-b-3xl"
+                  return (
+                    <motion.div
+                      key={blogItem.id}
+                      variants={fadeInVariants}
+                      initial={shouldAnimate ? "hidden" : "visible"} // Changed: use "visible" instead of false
+                      animate="visible"
+                      style={{ boxShadow: "0px 0px 4px 0px #00000040" }}
+                      className="w-full bg-white h-[25rem] relative rounded-b-3xl overflow-hidden"
+                    >
+                      {/* Image with fade-in animation */}
+                      <motion.div 
+                        className="h-[12rem] overflow-hidden relative"
+                        variants={imageFadeVariants}
+                        initial={shouldAnimate ? "hidden" : "visible"} // Changed: use "visible" instead of false
+                        animate="visible"
                       >
                         <img
                           src={blogItem?.image}
-                          className="w-full h-[12rem] object-cover"
+                          className="w-full h-full object-cover"
                           alt={blogItem?.title}
                           onError={(e) => {
                             e.target.src =
                               "https://via.placeholder.com/400x200?text=No+Image";
                           }}
                         />
-                        <div className="px-[1rem]">
-                          <h1 className="text-[#333333] font-bold text-md mt-3 line-clamp-2">
-                            {blogItem?.title}
-                          </h1>
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: getCleanedContent(blogItem?.content),
-                            }}
-                            className="text-[#959595] mt-[1rem] text-sm line-clamp-3 leading-relaxed"
-                          />
-                        </div>
-                        <Link
-                          to={`/blog/${blogItem.id}`}
-                          className="absolute bottom-0 right-0 left-0"
-                        >
-                          <button className="h-[2.7rem] cursor-pointer w-full bg-primary rounded-b-3xl text-white font-bold text-lg">
-                            {i18next.t("blog.read_more")}
-                          </button>
-                        </Link>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
+                      
+                      <div className="px-[1rem]">
+                        <motion.h1 
+                          className="text-[#333333] font-bold text-md mt-3 line-clamp-2"
+                          whileHover={{ color: "#009444" }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {blogItem?.title}
+                        </motion.h1>
+                        <motion.p
+                          dangerouslySetInnerHTML={{
+                            __html: getCleanedContent(blogItem?.content),
+                          }}
+                          className="text-[#959595] mt-[1rem] text-sm line-clamp-3 leading-relaxed"
+                          initial={shouldAnimate ? { opacity: 0 } : { opacity: 1 }} // Changed: provide default visible state
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.2, duration: 0.5 }}
+                        />
+                      </div>
+                      <Link
+                        to={`/blog/${blogItem.id}`}
+                        className="absolute bottom-0 right-0 left-0"
+                      >
+                        <motion.button 
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="h-[2.7rem] cursor-pointer w-full bg-primary rounded-b-3xl text-white font-bold text-lg transition-all duration-300 hover:bg-[#007a3a]"
+                        >
+                          {i18next.t("blog.read_more")}
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              {hasMore && (
-                <div className="flex justify-center items-center mt-[3rem]">
-                  <button
-                    onClick={loadMore}
-                    disabled={isLoading}
-                    className="w-[16rem] h-[4rem] rounded-md bg-primary flex justify-center items-center gap-x-5 cursor-pointer disabled:opacity-50"
+              {/* See More button */}
+              {(hasMoreItems || (hasMore && !newsDataLoading && !isLoadingMore)) && (
+                <motion.div 
+                  className="flex justify-center items-center mt-[3rem]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <motion.button
+                    onClick={handleLoadMore}
+                    disabled={isLoadingMore || newsDataLoading}
+                    className="w-[16rem] h-[4rem] rounded-md bg-primary flex justify-center items-center gap-x-5 cursor-pointer disabled:opacity-50 relative overflow-hidden group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {isLoading ? (
+                    <motion.div 
+                      className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                      initial={false}
+                      animate={{}}
+                    />
+                    
+                    {(isLoadingMore || newsDataLoading) ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <p className="text-pimary font-bold font-bold text-lg">
+                        <motion.div 
+                          className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        <p className="text-white font-bold text-lg">
                           {i18next.t("blog.loading_news")}
                         </p>
                       </>
@@ -379,11 +497,16 @@ const BlogGrid = () => {
                         <p className="text-white font-bold text-lg">
                           {i18next.t("blog.see_more")}
                         </p>
-                        <img src={download} alt="download" />
+                        <motion.img 
+                          src={download} 
+                          alt="download"
+                          animate={{ y: [0, 5, 0] }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                        />
                       </>
                     )}
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               )}
             </>
           )}
@@ -392,5 +515,4 @@ const BlogGrid = () => {
     </div>
   );
 };
-
 export default BlogGrid;

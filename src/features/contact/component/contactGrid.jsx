@@ -49,7 +49,7 @@ const ContactGrid = ({ contactData, homePageData }) => {
 
     contactUs(formData, {
       onSuccess: () => {
-        toast.success("message send successfully")
+        toast.success(i18next.t("contact_validation.message send successfully"))
         reset(); // Reset form fields
       },
       onError: (error) => {

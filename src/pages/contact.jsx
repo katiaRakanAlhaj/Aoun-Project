@@ -1,3 +1,4 @@
+import MetaHelmet from "../component/meta/metaHelemt";
 import ScrollToTop from "../component/scrollToTop.js/scrollToTop";
 import ContactBanner from "../features/contact/component/contactBanner";
 import ContactGrid from "../features/contact/component/contactGrid";
@@ -16,6 +17,7 @@ const Contact = () => {
   return (
     <>
       <ScrollToTop />
+      <MetaHelmet title = {"Contact"} description={"Contact"}/>
       <div>
         <ContactBanner />
         <Faq />
