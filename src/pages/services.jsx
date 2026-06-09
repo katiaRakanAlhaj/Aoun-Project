@@ -19,7 +19,7 @@ const Services = () => {
   return (
     <div>
       <ScrollToTop />
-      <MetaHelmet title={"Services"} description={"Services"} />
+      <MetaHelmet title={"Marnas | Services"} description={"Services"} />
       <ServiceImage />
       <OurStoryService />
       <JourneyOfSuccess />

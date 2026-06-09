@@ -17,7 +17,7 @@ const Contact = () => {
   return (
     <>
       <ScrollToTop />
-      <MetaHelmet title = {"Contact"} description={"Contact"}/>
+      <MetaHelmet title = {"Marnas | Contact"} description={"Contact"}/>
       <div>
         <ContactBanner />
         <Faq />

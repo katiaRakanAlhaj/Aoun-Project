@@ -7,7 +7,7 @@ const Blog = () => {
   return (
     <div>
       <ScrollToTop />
-      <MetaHelmet title={"blog"} description={"blog"} />
+      <MetaHelmet title={"Marnas | blog"} description={"blog"} />
       <BlogDescription />
       <BlogGrid />
     </div>

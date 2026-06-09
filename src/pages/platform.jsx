@@ -9,7 +9,7 @@ import PlatformWorking from "../features/platform/component/platformWorking";
 const Platform = () => {
   return (
     <div>
-      <MetaHelmet title={"Platform"} description={"Platform"} />
+      <MetaHelmet title={"Marnas | Platform"} description={"Platform"} />
       <ScrollToTop />
       <PlatformImage />
       <PlatformWorking />

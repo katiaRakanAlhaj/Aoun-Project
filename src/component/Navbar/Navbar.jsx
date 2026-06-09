@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/MARNAS LOGO.svg";
+import i18next from "i18next";
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
@@ -83,9 +84,9 @@ const Navbar = () => {
       className={`w-full bg-white h-[5rem] px-[5rem] flex items-center justify-between ${!isAboutPlatform ? "mt-[1.5rem]" : ""}`}
     >
       <Link to={getLocalizedPath("")}>
-        <img className="w-[10.5rem]" src={logo} alt="logo" />
+        <img className={`w-[24rem] ${i18next.language == "ar"?'mr-[-4rem]':'ml-[-4rem]'}`} src={logo} alt="logo" />
       </Link>
-      <div className="flex gap-x-[2.5rem]">
+      <div className={`flex gap-x-[2.5rem] ${i18next.language == "ar"?'mr-[-6rem]':'ml-[-6rem]'}`}>
         {items.map((item, index) => (
           <Link key={index} to={getLocalizedPath(item.path)}>
             <p 

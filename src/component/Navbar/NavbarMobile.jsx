@@ -2,7 +2,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/MARNAS LOGO.svg";
+import i18next from "i18next";
 
 const NavbarMobile = () => {
   const { t, i18n } = useTranslation();
@@ -111,7 +112,7 @@ const NavbarMobile = () => {
         }`}
       >
         <Link to={getLocalizedPath("")}>
-          <img className="w-[8rem]" src={logo} alt="logo" />
+          <img className={`w-[20rem] ${i18next.language == "ar"?'mr-[-4rem]':'ml-[-4rem]'}`} src={logo} alt="logo" />
         </Link>
 
         <div className="flex items-center gap-4">

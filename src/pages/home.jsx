@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <div>
-      <MetaHelmet title={"Home"} description={"Home"} />
+      <MetaHelmet title={"Marnas | Home"} description={"Home"} />
       <ScrollToTop />
       <MainSection />
       <About />

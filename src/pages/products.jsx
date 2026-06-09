@@ -31,7 +31,7 @@ const Products = () => {
   return (
     <div>
       <ScrollToTop />
-      <MetaHelmet title={"Products"} description={"Products"} />
+      <MetaHelmet title={"Marnas | Products"} description={"Products"} />
       <ProductImage />
       <ProductsGrid productsData={productsData} />
       <JoinOurIndustrialCommunity partnerData={partnerData} />

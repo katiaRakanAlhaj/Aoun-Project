@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/MARNAS LOGO.svg";
 import global from "../../assets/images/global.svg";
 import sharing from "../../assets/images/sharing.svg";
 import i18next from "i18next";
@@ -76,7 +76,7 @@ const Footer = () => {
   return (
     <div
       style={{ boxShadow: "0px 8px 44px 0px #00000040" }}
-      className="w-full h-auto lg:h-[25rem] bg-white py-[2rem] md:py-[4rem]"
+      className="w-full h-auto lg:h-[27rem] bg-white py-[2rem] md:py-[4rem]"
     >
       <div className="container1 mx-auto px-4 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0">
@@ -86,12 +86,12 @@ const Footer = () => {
           >
             <Link to={getLocalizedPath("")}>
               <img
-                className="w-[10.5rem] mx-auto md:mx-0 cursor-pointer"
+                className={`w-[20rem] ${i18next.language == "ar"?'md:mr-[-6.2rem]':'md:ml-[-6.2rem]'} cursor-pointer mt-[-10rem]`}
                 src={logo}
                 alt="logo"
               />
             </Link>
-            <p className="text-[#78716C] text-md w-full md:w-[55%] leading-relaxed mt-[1.5rem] mx-auto md:mx-0">
+            <p className="text-[#78716C] text-md w-full md:w-[55%] leading-relaxed lg:mt-[-10rem] mt-[-8rem] mx-auto md:mx-0">
               {i18next.t("footer.footer_description")}{" "}
             </p>
             <div className="flex gap-x-4 mt-[1.5rem] justify-center md:justify-start">
@@ -146,7 +146,7 @@ const Footer = () => {
 
         <div className="flex justify-center items-center mt-[2rem]">
           <p className="text-[#ADADAD] text-sm md:text-lg text-center">
-            {i18next.t("footer.footer_rights")}{" "}
+            {i18next.t("footer.footer_rights")}
           </p>
         </div>
       </div>
